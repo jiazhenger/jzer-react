@@ -4,7 +4,6 @@ const { $lazy, $fn, $http } = window
 /* -------------------------------------------------------- Async Component -- */
 const Input = $lazy.load(()=>import('@antd/form/input'))
 const Button = $lazy.load(()=>import('@antd/button'))
-const defaultTime = 6
 /* -------------------------------------------------------- 回到顶部 -- */
 const Index = ({ 
 	className,						/** @param {String}				# 盒子 className */
@@ -15,6 +14,7 @@ const Index = ({
 	p,								/** @param {String}				#  */
 	formRef, 						/** @param {Object}				# formRef */
 	phoneStr='phone', 				/** @param {Object}				# 手机号字段名 */
+	duration=60, 				/** @param {String}				# 默认时长 */
 	//
 	value,							/** @param {Number}				# 值 */
 	disabled,						/** @param {Boolan}				# 禁用 */
@@ -29,7 +29,7 @@ const Index = ({
 	param,							/** @param {Object}				# 请求 参数 */
 })=> {
 	const [ btnDisabled, setBtnDisabled ] = React.useState(  )
-	const [ time, setTime ] = React.useState( defaultTime )
+	const [ time, setTime ] = React.useState( duration )
 	const [ txt, setTxt ] = React.useState( '发送验证码' )
 	
 	input = { 
@@ -74,7 +74,7 @@ const Index = ({
 					time --
 					if(time <= 0){
 						clearInterval(cleartime);
-						time = defaultTime
+						time = duration
 						setTxt('重新获取验证码')
 						setBtnDisabled(false)
 					}
@@ -86,7 +86,7 @@ const Index = ({
 	
 	return (
 		<div className='fx'>
-			<Input onInput={_onChange} {...input} />
+			<Input onChange={_onChange} {...input} />
 			<Button className='ml10' onClick={onSendCode}  disabled={btnDisabled || disabled}  size={size} ghost {...btn}>
 				{
 					(btnDisabled && !disabled) ? (

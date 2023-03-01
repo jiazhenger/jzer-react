@@ -15,15 +15,35 @@ const Checkbox = $lazy.load(()=>import('@antd/form/checkbox'))
 /* -------------------------------------------------------- Data -- */
 const dataType = [{ label:'字符串', value:'string' }, { label:'数字', value:'number' }, { label:'布尔值', value:'bool' }]
 /* -------------------------------------------------------- Page Component -- */
-const Index = ({ data, component }) => {
+const Index = ({ data, component, option }) => {
 	const [ result, setResult ] = React.useState($fn.deepCopy(data))
 	const [ showName, setShowName ] = React.useState(false)
 	const [ key, setKey ] = React.useState(0)
 	const [ addKey, setAddKey ] = React.useState(0)
 	const [ selectKey, setSelectKey] = React.useState(0)
 	const Title = ({ name, title }) => <h6 style={{minWidth:120}} className='h28 tr f12 g6 mr5' title={title}>{name}<i className='g9 ml5'>:</i></h6>
-	// 默认执行
-	React.useEffect(()=>setResult( d => [...backJSON($fn.local('templateConfig'), d)] ),[])
+	/* ========================================================================================= */
+	const param = React.useRef({})
+	React.useEffect(()=>{
+		if(option?.getApi){
+			const { id } = $fn.query()
+			$http.pull(null,option?.getApi, { id }).then(data=>{
+				param.current = data
+				if($fn.hasObject(data?.wetSetting)){
+					try{
+						setResult( d => [...backJSON(data.wetSetting, d)] )
+					}catch(e){
+						$fn.msg.error('JSON 格式不正确，请检查')
+					}
+				}else{
+					setResult( d => [...backJSON($fn.local('templateConfig'), d)] )
+				}
+			})
+		}else{
+			setResult( d => [...backJSON($fn.local('templateConfig'), d)] )
+		}
+	},[ option ])
+	/* ========================================================================================= */
 	// 缓存
 	const save = React.useCallback(()=>setTimeout(()=>$fn.local('templateConfig', getJSON(result)), 200), [ result ])
 	// 排序
@@ -176,7 +196,7 @@ const Index = ({ data, component }) => {
 				setKey(key => key + 1)
 			} },
 			{ label:'显示字段名', ghost:1, click:()=> setShowName(v=>!v) },
-			{ label:'生成 JSON', click(){
+			option?.createJson ? { label:'生成 JSON', click(){
 				const json = getJSON(result)
 				window.$modalRef().open({
 					title 		: '生成 JSON',
@@ -191,8 +211,8 @@ const Index = ({ data, component }) => {
 					onCancel 	: close => true,
 					controls: { ok:{ label:'复制', click:()=>Copy(document.querySelector('#copyTarget').value) } },
 				})
-			} },
-			{ label:'导入 JSON', click(){
+			} } : null,
+			option?.importJson ? { label:'导入 JSON', click(){
 				window.$modalRef().open({
 					title 		: '生成 JSON',
 					width		: '80%',
@@ -216,7 +236,7 @@ const Index = ({ data, component }) => {
 						}
 					} } },
 				})
-			} },
+			} } : null,
 			{ label:'预览', click :() =>{
 				const json = getJSON(result)
 				if(!$fn.hasObject(json)) return $fn.msg.warning('未添加配置')
@@ -229,14 +249,15 @@ const Index = ({ data, component }) => {
 					controls: { ok:0 }
 				})
 			} },
-			// { label:'保存', click(){
-			// 	const json = getJSON(result)
-			// 	if(!$fn.hasObject(json)) return $fn.msg.warning('未添加配置')
-			// 	$http.post(null, '/priv_code/setwetting', { param: { wet_setting: JSON.stringify(json) } }).then(()=>{
-			// 		$fn.msg.success('未添加配置')
-			// 		$fn.back()
-			// 	})
-			// } }
+			option?.saveApi ? { label:'保存', click(){
+				const json = getJSON(result)
+				if(!$fn.hasObject(json)) return $fn.msg.warning('未添加配置')
+				$http.post(null, option?.saveApi, { param: { ...param.current, [option?.jsonStr ?? 'json']: JSON.stringify(json) } }).then(()=>{
+					$fn.msg.success('保存成功')
+					$fn.back()
+				})
+			} } : null,
+			option?.back ? { mode:'back' } : null
 		]
 	}
 	return (

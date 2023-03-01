@@ -7,5 +7,5 @@ const { $lazy } = window
 const CreateTemplate = $lazy.load(()=>import('#cpt/create-template'))
 const SearchTable = window.$lazy.hook(()=>import('#cpt/temp/SearchTable'))
 /* -------------------------------------------------------- Page Component -- */
-const Index = () => <CreateTemplate data={data} component={ props => <SearchTable {...props}/>} />
+const Index = ({option}) => <CreateTemplate option={option} data={data} component={ props => <SearchTable {...props}/>} />
 export default Index
