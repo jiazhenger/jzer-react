@@ -1,0 +1,40 @@
+/* ================================ *** 菜单 *** ================================ */
+.jzer-menu{.f12;.nosel;
+	label{.db;}
+	h3{.pr5;.bcf;}
+	&>label{
+		>h3{}
+		>menu{.bc(#f9f9f9)}
+	}
+	&>.child span, &>label>h3{.pl10;}
+
+	.child, h3{.hh36;.cp;.nowrap;}
+	
+	menu{.dn}
+	
+	input[type='checkbox']:checked{
+		& + h3{.c0;
+			.menu-arrow{transform: translateY(-2px);
+				&::before{transform: rotate(45deg) translate(2.5px)}
+				&::after{transform: rotate(-45deg) translate(-2.5px)}
+			}
+			& + menu{.db;}
+		}
+	}
+	input[type='radio']:checked{
+		& + span{.bc(#e6f7ff);.c(@main-color);.rbor(@main-color,2)}
+	}
+}
+.menu-arrow{.abs;.r_t(16,50%);.w(10);.transform( translateY(-50%) );
+	&::before, &::after{.cn;.abs;.wh(6, 1.5);.bc(currentColor);.r2px;.ease;}
+	&::before{
+		transform: rotate(-45deg) translate(2.5px);
+	}
+	&::after{
+		transform: rotate(45deg) translate(-2.5px);
+	}
+}
+
+.nav-top-list{
+	.active{.c0;}
+}

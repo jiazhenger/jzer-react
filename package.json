@@ -1,0 +1,16 @@
+{
+  "name": "jzer-react",
+  "version": "1.0.0",
+  "description": "React 后台管理系统模板",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "j+2",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jiazhenger/jzer-react.git"
+  }
+}

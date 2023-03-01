@@ -1,0 +1,66 @@
+/* ================================ *** 个性化模块 *** ================================ */
+// ================================================================
+.hover-bc:extend(.ease){
+    &:hover{.bc_eee!important;}
+}
+.hover-tu{
+    &:hover{.tu;}
+}
+.hover:extend(.ease){
+    &:hover{.c0!important}
+}
+.tap-tag{
+    &:active{.bor(@main-color)!important;
+        *{.c0!important;}
+    }
+}
+.hover-o{
+	&:hover{.op(.9);}
+}
+.rotate-up{.rotate(-180deg)}
+// ================================================================ code
+@keyword: 	#333; 			// 关键字
+@emphasis: 	#ff0080;		// 当前重点
+@gray: 		#999; 			// 灰色
+@param: 	#8000ff;		// 参数
+@link: 		#049EF4; 		// 链接
+@type: 		pink; 			// 类型
+@hh: 		34; 			// 高
+
+.code-list{.w;.dt;.f13;.bc(#fdf7f2);.oh;.ar;.c_333;
+	&.mobile dd{.nowrap(normal);.hau;}
+	&:extend(.bbsb);
+	dl{.dtd;.vt;
+	   &:first-child{.w(20);.tc;.rbor(#6ce26c,2);.c(#ddd);}
+	}
+	dt,dd{.hh(@hh);.nowrap;.plr10;.m;
+	   &:nth-child(2n){.bc_fff;}
+	}
+	dt{.user-select;}
+	dd{.pre;
+		&:hover{.bc(#ead6c7);}
+	}
+	b{.c(@emphasis)} 				// 当前重点
+	em{.c(@gray)} 					// 注释
+	i{.c(#8000ff);.b;}
+	s{.c(#30b030);.b;}
+	u{.b}
+	q{.c(purple);.b;}
+	tt{.c(@type);.n;.b;.ar;.i;} 	// 类型
+	a{.tu;.c(@link)} 				// 链接
+	br{.dn;}
+}
+// ================================================================ 首页
+.index-memu{
+	li{.w(33.3%);.p(2);
+		div{.bcf;.cp;.plr20;.hh50;.b;.f16;.c0;
+			&:hover{.bc_eee;}
+		}
+	}
+}
+
+@media only screen and( max-width: 800px ){
+	.index-memu{
+		li{.w;.p;.mb(2)}
+	}
+}

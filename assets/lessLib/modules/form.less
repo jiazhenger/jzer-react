@@ -1,0 +1,27 @@
+/* ================================ *** form *** ================================ */
+// ================================================================ upload file
+
+// ================================================================ upload file
+input[type='file']{.abs_lt(0,0);.ww(0);.op(0);.index(-1)}
+// ================================================================ input textarea
+input, textarea{.bor0;}
+textarea{resize: vertical;}
+input,textarea{
+    // &::-webkit-input-placeholder{.f12!important;}
+	&::-webkit-autofill{ transition:background-color 5000s ease-in-out 0s!important;}
+}
+// ================================================================ public input
+
+// ================================================================ radio
+.jzer-radio:extend(.fxm all){.cp;
+	>i,>i:after{.rpx;}
+	>i:extend(.fxmc all){.ww(18);.bor(@main-color, 2);.mr5;
+		
+	}
+	input:checked + i{
+		&::after{.cn;.ww(8);.bc(@main-color)}
+		// & + span{.c(@main-color)}
+	}
+}
+
+// ================================================================ public input

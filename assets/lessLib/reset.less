@@ -1,0 +1,18 @@
+/* ================================ *** 初始化样式 *** ================================ */
+html,body,#app-root{.wh;.oh}
+body{.fs(@font-size);.lh(@font-line-height);.ff(@font-family);.c(@font-color);.max_w;background-color:@body-bgcolor;}
+
+#app-root:extend(.fix_lt){}
+
+@supports(padding: max(0px)) {
+    //html,body,app-root{height: calc(100% + 18px)}
+}
+// iphoneX css部分
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3){
+//html,body,app-root{height: calc(100% + 18px)}
+}
+
+// iphone6，iphone7，iphone8s
+@media (device-height:667px) and (-webkit-min-device-pixel-ratio:2){
+    
+}
