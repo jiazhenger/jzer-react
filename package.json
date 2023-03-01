@@ -1,6 +1,6 @@
 {
   "name": "jzer-react-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React 后台管理系统模板",
   "main": "index.js",
   "scripts": {
@@ -38,5 +38,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/jiazhenger/jzer-react-template.git"
-  }
+  },
+  "lint-staged": {
+      "*.{ts,tsx,js,jsx}": "rome format --write",
+      "*.{json,less,md}": "prettier --ignore-unknown --write"
+    }
 }
