@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PageLoading from '@tp/page-loading'
 import LazyLoad from '@com/react/lazy/lazy-load'
 /* -------------------------------------------------------- Async Component -- */
-const NotFound 	= LazyLoad(()=>import('@views/404'))
+const NotFound 	= LazyLoad(()=>import('./404'))
 /**
  * 异步加载路由组件
  * @param {Function}	importComponent 	# 引入组件 () => import()

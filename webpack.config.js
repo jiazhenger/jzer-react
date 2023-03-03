@@ -1,13 +1,15 @@
 const resolve = dir => require('path').join(__dirname,dir)
 
-const evn = 1
-
 module.exports = {
-	mode: 'production',	// development为开发环境，production为生产环境
+	mode: 'development',	// development为开发环境，production为生产环境
 	entry:  {
 		'common/global': resolve('./src/_pub/common/global.js'),
+		'common/http': resolve('./src/_pub/common/http.js'),
+		'common/fn': resolve('./src/_pub/common/fn.js'),
+		
 		'common/login/login': resolve('./src/_pub/common/login/login.js'),
 		'common/login/logout': resolve('./src/_pub/common/login/logout.js'),
+		
 		// utils
 		'common/utils/copy': resolve('./src/_pub/common/utils/copy.js'),
 		'common/utils/cryptojs': resolve('./src/_pub/common/utils/cryptojs.js'),
@@ -77,8 +79,12 @@ module.exports = {
 	},
 	output: {
 		path: resolve('./dist'),					// 打包后的文件存放的地方
-		filename:'[name].js',					// 打包后输出文件的文件名
+		// filename:'[name].js',					// 打包后输出文件的文件名
+		libraryTarget: 'amd',
+		libraryExport: 'default',
+		clean: true
 	},
+	// devtool: 'source-map',					// 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
 	resolve: {
 		alias : {
 			'@' 		: resolve('src'),
@@ -115,9 +121,22 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				loader: 'babel-loader',
-				exclude: /node_modules/
+				exclude: /node_modules/,
+				options: {
+					 // 开启Bable缓存
+					 cacheDirectory: true,
+					 // 关闭缓存的压缩
+					 cacheCompression: false,
+					 plugins: ['@babel/plugin-transform-runtime'] // 减少代码体积
+				 } 
 			}
 		],
+	},
+	// 压缩
+	optimization:{
+		// js文件分割打包
+		splitChunks:{
+			chunks: 'all', // 对所有模块镜像分割
+		}
 	}
-	// devtool: 'source-map',					// 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
 }
