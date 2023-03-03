@@ -234,21 +234,20 @@ const Index = ({
 				if(selectedRowKeys.includes(key)){
 					const index = keys.findIndex(v => v === key)
 					keys.splice(index, 1)
-					row?.onRowFalse?.(record)
+					row?.onRowFalse?.(record, tableRef)
 				}else{
+
 					const v = record[idStr]
 					if(type === 1){
 						keys = [ v ]
 					}else{
-						keys.push(v )
+						keys.push( v )
 					}
-					row?.onRowTure?.(record)
+					row?.onRowTure?.(record, tableRef)
 				}
-				
 				setKeys(keys)
-				
-				row?.onRow?.({ row: record, keys:getKeys(), rows:getRows })
-				onRow?.( { row: record, keys, rows:getRows } )
+				row?.onRow?.({ row: record, keys:getKeys(), rows:()=>getRows(keys), tableRef })
+				onRow?.( { row: record, keys, rows:getRows, tableRef } )
 			}else{
 				onRow?.( record )
 			}
@@ -265,7 +264,7 @@ const Index = ({
 		row.keys = k
 		setSelectedRowKeys( [...k] )
 		onKeysChange?.( [...k] )
-		row?.change?.({ keys:row.type ?  keys?.[0] ?? null : keys, rows: $fn.hasArray(rows) ? ( ()=> row.type ? rows?.[0] : rows ) : getRows })
+		row?.change?.({ keys:row.type ?  keys?.[0] ?? null : keys, rows: $fn.hasArray(rows) ? ( ()=> row.type ? rows?.[0] : rows ) : ()=>getRows(keys), tableRef })
  	}, [ ajax.data ]) // eslint-disable-line
 	const getKeys = useCallback(() => {
 		if( $fn.isObject(row) ){
@@ -278,10 +277,11 @@ const Index = ({
 	//设置 rows
 	const setRows = rows => setKeys( rows.map( v => v[idStr ]) )
 	// 获取 rows
-	const getRows = useCallback( () => {
-		const d = ajax.data.filter( v => selectedRowKeys?.includes?.( v[idStr]) )
+	const getRows = useCallback(function(){
+		const keys = (arguments.length === 0 ? selectedRowKeys : arguments[0]) ?? []
+		const d = ajax.data.filter( v => keys?.includes?.( v[idStr]) )
 		return row?.type ? ( d[0] ?? null ) : d
-	},[ ajax.data, selectedRowKeys ]) // eslint-disable-line
+	},[ row, ajax.data, selectedRowKeys ]) // eslint-disable-line
 	/* --------------------------- Expose --------------------------- */
 	const tableRef = {
 		refresh : scroll => fetch({ scroll: scroll??true }),
@@ -324,7 +324,8 @@ const Index = ({
 			ajax.data.splice(index,1)
 			this.data(ajax.data)
 		},
-		update(){ setAjax(() => ({ data: $fn.deepCopy(ajax.data) })) } 		// 强制更新
+		// 强制更新
+		update(){ setAjax(() => ({ data: $fn.deepCopy(ajax.data) })) }
 	}
 	useImperativeHandle( ref, () => tableRef )
 	/* --------------------------- 虚拟滚动 --------------------------- */

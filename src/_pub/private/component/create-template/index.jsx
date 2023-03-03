@@ -56,13 +56,13 @@ const Index = ({ data, component, option }) => {
 		setResult( [...result] )
 		save()
 	},[save, result])
-	const color = ['#999', 'red', 'blue']
-	const DeepComponent = ({ data, index = 0, hasChildren, show, isTwo, isObjectData }) => {
-		const style = hasChildren ? {border:`1px ${color[index-1]} dotted`, padding:'5px', borderRadius: 5} : null
+	const color = ['red', '#ccc', 'blue']
+	const DeepComponent = ({ data, index = 0, hasChildren, open, show, isTwo, isObjectData, isArray }) => {
+		const style = hasChildren ? {border:`1px ${open ? 'red' : color[index-1]} dotted`, padding:3, borderRadius: 5} : null
 		index ++
 		if(index === 1){ hasChildren = false } 
 		return (
-			<ul key={key} className={`${isTwo ? 'fx' : 'fv'}  ex`} hidden={show!==true} style={{ gap:5, marginLeft: 45 * (index-1), ...style}}>
+			<ul key={key} className={`${ (isTwo || (!isTwo && isArray && open!==true)) ? 'fx' : 'fv'}  ex`} hidden={show!==true} style={{ gap:5, marginLeft: 45 * (index-1), ...style}}>
 				{
 					$fn.hasArray(data) && data.map((v,i)=>{
 						const prop = {
@@ -72,7 +72,7 @@ const Index = ({ data, component, option }) => {
 								save()
 							}
 						}
-						let Element = (<div className='fx fxm ex'>
+						let Element = (<div className='fxm ex'>
 							<Input className='ex' {...prop}/>
 							{(isObjectData && v.key==='value') && <div className='ml10'><Select width={85} hint='' value={v.dataType} label='数据类型' data={dataType} onChange={value=>{
 								v.dataType = value
@@ -89,7 +89,7 @@ const Index = ({ data, component, option }) => {
 							default:
 						}
 						const Component = v.children ? (
-							<li>
+							<li hidden={v.isLabelValueData && open !== true}>
 								<div className='fxm'>
 									<Title name={showName ? v.key : v.title} title={v.key} />
 									<div className='fxm'>
@@ -138,16 +138,16 @@ const Index = ({ data, component, option }) => {
 									v.children && (
 										$fn.isObject( v.children?.[0] ) ? (
 											<div className='fx' style={{gap:5}}>
-												{ DeepComponent({ data:v.children, hasChildren:true, index, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
+												{ DeepComponent({ data:v.children, hasChildren:true, index, open:v.open, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
 											</div>
 										) : (
-											<div className='fv rel' style={{gap:5}} key={addKey}>
+											<div className='fv rel' style={{gap:5}} key={addKey} hidden={v.show !== true}>
 												{
 													v.children.map((m,k)=> (
 														<div key={k} className={` rel ${v.isTwo ? 'fxm' : 'fx'}`}>
-															{ DeepComponent({ data:m, hasChildren: true, index, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
-															<div className='ml10'>
-																<Button hidden={v.show !== true} size='mini' style={{height:22}} label='删除' onClick={()=>{
+															{ DeepComponent({ data:m, hasChildren: true, index, open:m.open, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
+															<div className={`ml10 ${v.isTwo || (m.open!==true && v.isArray) ? 'fxm' : 'fv'}`} style={{gap:5}}>
+																<Button size='mini' style={{height:22}} label='删除' onClick={()=>{
 																	v.children.splice(k, 1)
 																	if(v.children.length === 0){
 																		v.add = false
@@ -156,14 +156,16 @@ const Index = ({ data, component, option }) => {
 																	update()
 																	setAddKey(k => k - 1)
 																}}/>
-																<div className='mt5'>
-																	<Select p='排序' key={selectKey} value={k+1} width={60} antd={{showSearch:false}} allowClear={false} data={getSortData(v.children)} onChange={value=>{
-																		v.children.splice( k, 1 )
-																		v.children.splice( value - 1, 0, m )
-																		update()
-																		setSelectKey(k=>k+1)
-																	}} />
-																</div>
+																{!v.isTwo && <Button size='mini' style={{height:22}} label={m.open?'收缩':'展开'} onClick={()=>{
+																	m.open = !m.open
+																	update()
+																}}/>}
+																<Select p='排序' key={selectKey} value={k+1} width={60} antd={{showSearch:false}} allowClear={false} data={getSortData(v.children)} onChange={value=>{
+																	v.children.splice( k, 1 )
+																	v.children.splice( value - 1, 0, m )
+																	update()
+																	setSelectKey(k=>k+1)
+																}} />
 															</div>
 														</div>
 													))
@@ -174,7 +176,7 @@ const Index = ({ data, component, option }) => {
 								}
 							</li>
 						) : (
-							<li className={`fxm ${isTwo ? 'ex' : ''}`}>
+							<li hidden={i>1 && open !== true} className={`fxm ${isTwo || (!isTwo && isArray) ? 'ex' : ''}`}>
 								<Title name={showName ? v.key : v.title}  title={v.key}/>
 								{ Element }
 							</li>

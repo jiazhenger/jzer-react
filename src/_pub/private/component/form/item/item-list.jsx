@@ -71,6 +71,7 @@ const Index = ({
 						disabled: disabled || v.disabled,
 						readOnly: readOnly || v.readOnly,
 						out: 1,
+						format,
 						onChanged: change ? value => change({ ...value, formRef, ref:expose }) : null,
 						...el
 					}
@@ -125,12 +126,12 @@ const Index = ({
 							break;
 						case 'date':
 							const dateWidth = v.width ? v.width : ( !format ? elWidth : 154 )
-							el = { format, after, before, today, start, end, width:dateWidth, ...el}
+							el = { after, before, today, start, end, width:dateWidth, ...el}
 							Component = <DatePicker {...el} />
 							break;
 						case 'date-range':
 							const rangeWidth = v.width ? v.width : ( !format ? 200 : 305 )
-							el = { format, after, before, today, start, end, type, width:rangeWidth, ...el}
+							el = { after, before, today, start, end, type, width:rangeWidth, ...el}
 							Component = <DatePicker {...el} />
 							break;	
 						case 'transfer':

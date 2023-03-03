@@ -202,7 +202,7 @@ const Index = (props, ref) => {
 				
 				if( isSubmitForm ){ setBackInfo( formRef ) }
 				
-				onInit?.({ formRef, param })
+				onInit?.({ formRef, param, data })
 				
 				setBtnData( setControls( formRef ) )
 			} }

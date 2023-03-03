@@ -17,7 +17,8 @@ const Index = ({
 	hint='请输入',					/** @param {String}				# 提示语 */
 	type,							/** @param {String}				# 输入框内型 */
 	width,							/** @param {String}				# 宽度 */
-	out,							/** @param {Number}				# 在外部设置 value 值 */
+	out,							/** @param {Number}				# 在外部设置 value */
+	format,							/** @param {Array,String}				# 格式 */
 	//
 	label='',						/** @param {String}				# 标签名 */
 	name, 							/** @param {String}				# name */
@@ -70,8 +71,28 @@ const Index = ({
 	
 	React.useEffect(()=> { if( !out ) { setModel( value ) } }, [ value ]) // eslint-disable-line
 	
+	const getFormat = (format, value)=>{
+		if( $fn.isString(format) ){
+			const f = format.split('-')
+			f.forEach( v => {
+				switch(v){
+					case 'int': 
+						value = parseInt(value)
+						break
+					case 'abs':
+						if(value < 0) value = Math.abs(value)
+						break;
+					default:
+				}
+			})
+		}
+		return value
+	}
+	
 	const _onChange = e => {
 		let value = $fn.isObject(e)? e.target.value : e
+
+		value = getFormat(format, value)
 		
 		if(!out){ setModel( value ) }
 		

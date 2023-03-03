@@ -59,10 +59,10 @@ export const controlsData = [
 ]
 export const objectData = [ { title: '参数名', key: 'label' }, { title: '参数值', key: 'value' } ] 		// { x:1, y:1 }
 export const labelValueData = [ { title: '显示名称', key: 'label' }, { title: '参数值', key: 'value' } ]		//  { label:'', value:'' }
-
 export const formData = [
 	{ title: '显示名称', 	key: 'label' },
 	{ title: '字段名称',		key: 'name' },
+	{ title: '字段名称组',	key: 'names', isArrayGroup:1 },
 	{ title: '元素类型', 	key: 'type', type:'select', data:formTypeData },
 	{ title: '是否必选', 	key: 'r', type:'switch' },
 	{ title: '默认值', 		key: 'value' },
@@ -73,6 +73,7 @@ export const formData = [
 	{ title: '列表 api', 	key: 'api' },
 	{ title: '字段 id', 	key: 'idStr' },
 	{ title: '显示名称', 	key: 'nameStr' },
+	{ title: '是否缓存', 	key: 'cache' },
 	
 	{ title: '值为布尔值', 	key: 'bool', type:'switch' },
 	{ title: '列表数据', 	key: 'data', addData:labelValueData, isLabelValueData:true, isArray:true, isTwo:1, children:[] },

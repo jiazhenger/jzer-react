@@ -44,10 +44,11 @@ const deep = (data, json, dataType) => {
 									if($fn.isNotEmpty( p.value )) {
 										if(isObjectData){
 											stack[p.key] = p.key === 'value' ? setDataType(p.dataType, p.value) : p.value
+										}else if(p.isArrayGroup && p.value.indexOf(',') > 0){
+											stack[p.key] = p.value.split(',')
 										}else{
 											stack[p.key] = p.key === 'value' ? setDataType(dataType, p.value) : p.value
 										}
-										
 									}
 								}
 							})

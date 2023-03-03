@@ -26,15 +26,15 @@ const Index = ({
 	...antd }
 	
 	// 回显默认值: 格式 { value: 100 }
-	const setDefaultValue = (data, param) => {
+	const setDefaultValue = React.useCallback(function(rows, param) {
 		let stack = param ?? { }
-		data = $fn.getResult( data )
-		if( $fn.hasArray( data ) ){
-			data.forEach(v=>{ if( $fn.hasObject(v) && $fn.isNotEmpty(v.value)){ stack[v.name] = v.value } })
+		rows = arguments.length === 0 ? data : $fn.getResult( rows )
+		if( $fn.hasArray( rows ) ){
+			rows.forEach(v=>{ if( $fn.hasObject(v) && $fn.isNotEmpty(v.value)){ stack[v.name] = v.value } })
 		}
 		if($fn.hasObject(stack)){ form.setFieldsValue( stack ) }
 		return stack
-	}
+	}, [ data, form ])
 	
 	React.useImperativeHandle( ref, () => ({
 		// 提交表单
