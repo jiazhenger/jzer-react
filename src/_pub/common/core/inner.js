@@ -38,8 +38,33 @@ const Index = {
 	nan(v){return !isNaN(v) ? v : '--'},
 	// ========================================================================  惰性加载文件
 	async lazy(file){ return file().then( f => f.default ) },
+	// 执行字符串函数
+	func(name, arg1, arg2){
+		if(typeof name === 'string'){
+			return new Function('return' + name)()(arg1, arg2)   // eslint-disable-line
+		}else if(typeof name === 'function'){
+			var obj = {
+				f: name
+			}
+			return obj.f(arg1, arg2)
+		}
+	},
 	// 对象可为直接对象，或函数返回值
-	getResult(name,param){ return typeof name === 'function' ? name(param) : name },
+	getResult(name,param){
+		if(typeof name === 'function'){
+			return name(param)
+		}else if(typeof name === 'string'){
+			if( name.includes('=>') || name.includes('function') || name.includes('){') ){
+				return this.func(name, param)
+			}else if( (name.includes('{') && name.includes('}')) || (name.includes('[') && name.includes(']'))){
+				return JSON.parse(name)
+			}else{
+				return name
+			}
+		}else{
+			return name
+		}
+	},
 	// 获取编辑时的参数
 	getEditParam(id, idStr, param){ return id ? { [idStr]:id, ...param } : param	}
 }

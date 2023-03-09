@@ -190,7 +190,7 @@ const Index = ( props, ref ) => {
 		formRef: () => $.ref(submitRef)
 	}))
 	return (
-		<Modal ref={formModalRef} onOk={_onOk} loading={ajax.loading} {...modal}>
+		<Modal ref={formModalRef} formRef={()=>$.ref(submitRef).ref()} onOk={_onOk} loading={ajax.loading} {...modal}>
 			<SubmitForm
 				ref 		= { submitRef }
 				scroll 		= { false } 

@@ -1,6 +1,7 @@
 import React from 'react'
 /* -------------------------------------------------------- antd -- */
 import { Form } from 'antd'
+import $time from '@utils/time'
 /* -------------------------------------------------------- Declare -- */
 const { $fn, $ } = window
 /* -------------------------------------------------------- Form -- */
@@ -30,7 +31,11 @@ const Index = ({
 		let stack = param ?? { }
 		rows = arguments.length === 0 ? data : $fn.getResult( rows )
 		if( $fn.hasArray( rows ) ){
-			rows.forEach(v=>{ if( $fn.hasObject(v) && $fn.isNotEmpty(v.value)){ stack[v.name] = v.value } })
+			rows.forEach(v=>{ 
+				if( $fn.hasObject(v) && ($fn.isNotEmpty(v.value) || $fn.isNotEmpty(v.defaultValue))){ 
+					stack[v.name] = v.type.includes('date-range') && v.defaultValue ? $time.duration[v.defaultValue]() : v.value
+				}
+			})
 		}
 		if($fn.hasObject(stack)){ form.setFieldsValue( stack ) }
 		return stack

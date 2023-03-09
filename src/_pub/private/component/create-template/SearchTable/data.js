@@ -1,4 +1,4 @@
-import { controlsData, objectData, formData, colsData } from '#cpt/create-template/utils/data'
+import { controlsData, objectData, formData, colsData, labelWidthData, onData } from '#cpt/create-template/utils/data'
 const Index = [
 	{
 		title: '匹配路由',
@@ -27,9 +27,19 @@ const Index = [
 		key: 'search',
 		isObject: 1,
 		children: [
-			{ title: '固定参数', 		key: 'query', addData:objectData, isObjectData:1, isTwo:1, isObject:1, children:[]},
-			{ title: '默认参数', 		key: 'param', addData:objectData, isObjectData:1, isTwo:1, isObject:1, children:[]},
+			{ title:'宽度', 			key:'width' },
+			{ title:'上下补白', 			key:'padding', value:8, type:'number' },
+			{ title:'标签宽度', 			key:'labelWidth', type:'select', data:labelWidthData },
+			{ title:'伸缩按钮位置', 		key:'openPos', type:'select', data:onData([{label:'右侧',value:'right'}, {label:'中间',value:'center'}]) },
+			{ title: '固定参数', 		key: 'query', addData:objectData, isObjectData:1, isTwo:1, isObject:1, isFunction:1, children:[]},
+			{ title: '默认参数', 		key: 'param', addData:objectData, isObjectData:1, isTwo:1, isObject:1, isFunction:1, children:[]},
 			{ title: '搜索元素', 		key: 'data',  addData:formData, isArray:1, children: [] },
+			{ title: '按钮组', 			key: 'controls', 	isObject:1, children: [
+				{ title:'搜索按钮', 		key:'search', 	isObject:1, isOpen:1, children:controlsData },
+				{ title:'重置按钮', 		key:'reset', 	isObject:1, isOpen:1, children:controlsData },
+				{ title:'前面插入', 		key:'before', 	addData:controlsData, isArray:1, children:[] },
+				{ title:'后面插入', 		key:'after', 	addData:controlsData, isArray:1, children:[] },
+			]}
 		]
 	},
 	{
@@ -44,15 +54,16 @@ const Index = [
 			{ title: '回显 api', 		key: 'infoApi' },
 			{ title: '静态数据', 		key: 'data' },
 			{ title: '是否分页', 		key: 'paging', type:'switch', value: 1 },
+			{ title: '默认加载数据', 	key: 'init', type:'switch', value: 1 },
 			{ title: '选框', 			key: 'row', isObject:1, children:[
 				{ title:'单选框', 		key:'type', type:'switch' },
 				{ title:'事件监听', 		key:'change' },
 			]},
-			{ title: '行配置', 			key: 'controls', isObject:1, children: [
+			{ title: '列操作配置', 			key: 'controls', isObject:1, children: [
 				{ title: '列标题', 		key: 'title', value:'操作' },
 				{ title: '对齐方式', 	key: 'align', value:'center' },
 				{ title: '宽度', 		key: 'width', value: 150 },
-				{ title: '操作按钮', 	key: 'data',  addData:controlsData, isArray:1, children: [] }
+				{ title: '操作按钮', 	key: 'data',  addData:controlsData, isArray:1, isFunction:1, children: [] }
 			] },
 			{ title: '列配置', 			key: 'cols', addData:colsData, isArray:1, children: [] },
 		]

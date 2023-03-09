@@ -44,7 +44,8 @@ const Index = ({
 	
 	const isImg = listType === 'picture-card'
 	
-	const setFileListData = value => { if(showUploadList){ setFileList(value) } }
+	// const setFileListData = value => { if(showUploadList){ setFileList(value) } }
+	const setFileListData = React.useCallback(value => setFileList(value), [ ])
 	
 	React.useEffect(()=> {
 		if( mul ){ 

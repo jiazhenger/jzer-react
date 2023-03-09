@@ -54,7 +54,9 @@ const Index = {
 		})
 	},
 	// 判断不为 false 或 0
-	isNoFalse: value => value !== false || value !== 0
+	isNoFalse: value => value !== false || value !== 0,
+	// 将字符串转为数据
+	strToNum(value){ return this.isString(value) ? (isNaN(value*1) ? value : value * 1) : value}
 }
 
 export default Index

@@ -21,13 +21,13 @@ const Index = ({ data, component, option }) => {
 	const [ key, setKey ] = React.useState(0)
 	const [ addKey, setAddKey ] = React.useState(0)
 	const [ selectKey, setSelectKey] = React.useState(0)
-	const Title = ({ name, title }) => <h6 style={{minWidth:120}} className='h28 tr f12 g6 mr5' title={title}>{name}<i className='g9 ml5'>:</i></h6>
+	const Title = ({ name, title }) => <h6 style={{minWidth:120,margin:'0 5px 0 0'}} className='h28 tr f12 g6' title={title}>{name}<i className='g9 ml5'>:</i></h6>
 	/* ========================================================================================= */
 	const param = React.useRef({})
 	React.useEffect(()=>{
 		if(option?.getApi){
 			const { id } = $fn.query()
-			$http.pull(null,option?.getApi, { id }).then(data=>{
+			$http.pull(null,option?.getApi, { id, loading:true }).then(data=>{
 				param.current = data
 				if($fn.hasObject(data?.wetSetting)){
 					try{
@@ -51,18 +51,54 @@ const Index = ({ data, component, option }) => {
 		const d = Array.from({ length: data.length }, (value, index) => ({ label:index+1, value: index+1 }))
 		return d
 	}
+	// 编辑 Function
+	const onFunc = (row) => {
+		const isAdd = $fn.isEmpty(row.value)
+		window.$modalRef().open({
+			title 		: '编写 JS',
+			width		: '99%',
+			height 		: '99%',
+			slot 		: (
+				<div className='rel wh bcf p10'>
+					<textarea spellCheck={false} className='bor1 wh p10 lh22 r5px' id='jsCodeTarget' style={{background:'#fdf7f2'}}/>
+				</div>
+			),
+			style		: {background:'#f5f5f5', padding:5},
+			onOpen : () => {
+				if(!isAdd) document.querySelector('#jsCodeTarget').value = row.value
+			},
+			onCancel 	: () => true,
+			onOk 		: () => {
+				row.value = document.querySelector('#jsCodeTarget').value
+				save()
+				return true
+			},
+			controls: {
+				ok: { label:'保存' },
+				after: [
+					{ label:'清空', ghost:1, click:()=> {
+						document.querySelector('#jsCodeTarget').value=''
+						save()
+					}  }
+				]
+			}
+		})
+	}
 	// 更新数据
 	const update = React.useCallback(()=>{
 		setResult( [...result] )
 		save()
 	},[save, result])
 	const color = ['red', '#ccc', 'blue']
-	const DeepComponent = ({ data, index = 0, hasChildren, open, show, isTwo, isObjectData, isArray }) => {
-		const style = hasChildren ? {border:`1px ${open ? 'red' : color[index-1]} dotted`, padding:3, borderRadius: 5} : null
+	// 事件按钮
+	const EventButton = ({ row }) => <Button size='mini' ghost mode={$fn.isEmpty(row?.value)?'mod':'add'} label={`${$fn.isEmpty(row?.value)?'添加':'编写'}事件`} style={{height:22}} onClick={()=>onFunc(row)}/>
+	// 组件递归
+	const DeepComponent = ({ data, index = 0, hasChildren, open, isOpen, show, isTwo, isObjectData, isArray }) => {
+		const style = hasChildren ? {border:`1px ${open ? 'red' : color[index-1]} dotted`, padding:10, borderRadius: 5} : null
 		index ++
 		if(index === 1){ hasChildren = false } 
 		return (
-			<ul key={key} className={`${ (isTwo || (!isTwo && isArray && open!==true)) ? 'fx' : 'fv'}  ex`} hidden={show!==true} style={{ gap:5, marginLeft: 45 * (index-1), ...style}}>
+			<ul key={key} className={`${ (isTwo || (!isTwo && isArray && open!==true) || (isOpen && open!==true)) ? 'fx' : 'fv'}  ex`} hidden={show!==true} style={{ gap:5, marginLeft: 45 * (index-1), ...style}}>
 				{
 					$fn.hasArray(data) && data.map((v,i)=>{
 						const prop = {
@@ -80,25 +116,35 @@ const Index = ({ data, component, option }) => {
 							}}/></div>}
 						</div>)
 						switch(v.type){
+							case 'number':
+								Element = <Input type='number' className='ex' {...prop}/>
+								break
 							case 'select':
 								Element = <Select className='ex' {...prop} width={160} data={v.data}/>
 								break
 							case 'switch':
 								Element = <Switch {...prop} />
 								break
+							case 'function':
+								Element = <EventButton row={v}/>
+								break
+							case 'jsx':
+								Element = <div className='g9 f12 h28'>仅代码中配置</div>
+								break
 							default:
 						}
+						const hidden = open !== true && ((!isTwo && isArray) || isOpen)
 						const Component = v.children ? (
-							<li hidden={v.isLabelValueData && open !== true}>
+							<li hidden={v.isLabelValueData || hidden}>
 								<div className='fxm'>
 									<Title name={showName ? v.key : v.title} title={v.key} />
 									<div className='fxm'>
-										<Checkbox value={v.show} label='展开' disabled={v.children.length === 0} bool onChange={value=>{
+										<Checkbox value={v.add} label='添加' disabled={v.children.length === 0} bool onChange={value=>{
+											v.add = value
 											v.show = value
 											update()
 										}}/>
-										<Checkbox value={v.add} label='添加' disabled={v.children.length === 0} bool onChange={value=>{
-											v.add = value
+										<Checkbox value={v.show} label='展开' disabled={v.children.length === 0} bool onChange={value=>{
 											v.show = value
 											update()
 										}}/>
@@ -123,7 +169,7 @@ const Index = ({ data, component, option }) => {
 														}
 														update()
 													}}/>
-													<Button size='mini' label='清空' ghost className='ml10' style={{height:22}} onClick={()=>{
+													<Button size='mini' label='清空' ghost className='mlr10' style={{height:22}} onClick={()=>{
 														v.children = []
 														v.show = false
 														v.add = false
@@ -132,20 +178,27 @@ const Index = ({ data, component, option }) => {
 												</>
 											)
 										}
+										{
+											v.isFunction && <EventButton row={v}/>
+										}
 									</div>
 								</div>
 								{
 									v.children && (
 										$fn.isObject( v.children?.[0] ) ? (
-											<div className='fx' style={{gap:5}}>
-												{ DeepComponent({ data:v.children, hasChildren:true, index, open:v.open, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
+											<div className={v.isOpen && v.open!==true ? 'fxm' : 'fx'} style={{gap:5}}>
+												{ DeepComponent({ data:v.children, hasChildren:true, index, open:v.open, isOpen:v.isOpen, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
+												{v.isOpen && <Button size='mini' hidden={v.show !== true} style={{height:22}} label={v.open?'收缩':'展开'} onClick={()=>{
+													v.open = !v.open
+													update()
+												}}/>}
 											</div>
 										) : (
 											<div className='fv rel' style={{gap:5}} key={addKey} hidden={v.show !== true}>
 												{
 													v.children.map((m,k)=> (
 														<div key={k} className={` rel ${v.isTwo ? 'fxm' : 'fx'}`}>
-															{ DeepComponent({ data:m, hasChildren: true, index, open:m.open, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
+															{ DeepComponent({ data:m, hasChildren: true, index, open:m.open, isOpen:v.isOpen, isArray:v.isArray, show:v.show, isTwo:v.isTwo, isObjectData:v.isObjectData }) }
 															<div className={`ml10 ${v.isTwo || (m.open!==true && v.isArray) ? 'fxm' : 'fv'}`} style={{gap:5}}>
 																<Button size='mini' style={{height:22}} label='删除' onClick={()=>{
 																	v.children.splice(k, 1)
@@ -176,7 +229,7 @@ const Index = ({ data, component, option }) => {
 								}
 							</li>
 						) : (
-							<li hidden={i>1 && open !== true} className={`fxm ${isTwo || (!isTwo && isArray) ? 'ex' : ''}`}>
+							<li hidden={i>2 && hidden} className={`fxm ${isTwo || hidden ? 'ex' : ''}`}>
 								<Title name={showName ? v.key : v.title}  title={v.key}/>
 								{ Element }
 							</li>

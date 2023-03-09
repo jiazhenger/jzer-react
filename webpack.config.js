@@ -1,7 +1,10 @@
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const cleanPlugin = new CleanWebpackPlugin()
+
 const resolve = dir => require('path').join(__dirname,dir)
 
 module.exports = {
-	mode: 'development',	// development为开发环境，production为生产环境
+	mode: 'production',	// development为开发环境，production为生产环境
 	entry:  {
 		'common/global': resolve('./src/_pub/common/global.js'),
 		'common/http': resolve('./src/_pub/common/http.js'),
@@ -80,10 +83,11 @@ module.exports = {
 	output: {
 		path: resolve('./dist'),					// 打包后的文件存放的地方
 		// filename:'[name].js',					// 打包后输出文件的文件名
-		libraryTarget: 'amd',
+		libraryTarget: 'commonjs',
 		libraryExport: 'default',
 		clean: true
 	},
+	plugins: [ cleanPlugin ],
 	// devtool: 'source-map',					// 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
 	resolve: {
 		alias : {
@@ -123,11 +127,15 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				options: {
-					 // 开启Bable缓存
-					 cacheDirectory: true,
-					 // 关闭缓存的压缩
-					 cacheCompression: false,
-					 plugins: ['@babel/plugin-transform-runtime'] // 减少代码体积
+					// 开启Bable缓存
+					cacheDirectory: true,
+					// 关闭缓存的压缩
+					cacheCompression: false,
+					// 减少代码体积
+					plugins: ['@babel/plugin-transform-runtime'],
+					// 
+					babelrc: false,
+					presets: [require.resolve('babel-preset-react-app')],
 				 } 
 			}
 		],

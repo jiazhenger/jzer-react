@@ -16,7 +16,11 @@ const setDataType = (type,value)=>{
 }
 const deep = (data, json, dataType) => {
 	data.forEach( items => {
-		let { key, children, value, add, isObject, isArray, isObjectData } = items
+		let { key, children, value, add, isObject, isArray, isObjectData, isFunction } = items
+		if(isFunction){
+			json[key] = value
+			return
+		}
 		if(children){
 			if( !add ) return
 			if($fn.hasArray( children )){
@@ -52,7 +56,6 @@ const deep = (data, json, dataType) => {
 									}
 								}
 							})
-							
 							if(isObjectData){
 								if($fn.isNotEmpty( stack.value ) && $fn.isNotEmpty( stack.label )) json[stack.label] = setDataType(dataType, stack.value)
 							}else{

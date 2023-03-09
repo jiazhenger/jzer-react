@@ -60,6 +60,7 @@ const Index = (props, ref) => {
 		add,					/** @param {Boolan}				# 是否新增 */
 		listData,				/** @param {Object}				# 回显数据 */
 		mode,					/** @param {Object}				# 模式 */
+		way,					/** @param {Object}				# 提交方式 */
 	} = props
 	const [ list, setList ] = useState( listData )
 	const submitRef = useRef()
@@ -114,9 +115,9 @@ const Index = (props, ref) => {
 		
 		if( mode === 'add'){ return onAdd?.() }
 		
-		if( id || mode === 'mod' ){
+		if( id || mode === 'mod' || mode === 'info' ){
 			id = $fn.getResult(id)
-			if( !abs ){ backParam = { [idStr]: id, ...backParam } }
+			if( !abs ){ backParam = id ? { [idStr]: id, ...backParam } : backParam }
 			id = backParam ? null : id
 			
 			if(props.infoApi !== false || props.infoApi !== 0){
@@ -215,7 +216,7 @@ const Index = (props, ref) => {
 				}
 				param = { ...submit, ...param }
 				if( isSubmitForm ){
-					SubmitUtils({ onSubmit, param, submitConfig:props, ajax:setAjax, formRef, form })
+					SubmitUtils({ onSubmit, param, submitConfig:props, ajax:setAjax, formRef, form, way })
 				}else{
 					onSubmit?.({ param, formRef, form  })
 				}

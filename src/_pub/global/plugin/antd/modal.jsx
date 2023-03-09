@@ -15,7 +15,11 @@ const Index = (props, ref) => {
 		slot, 				/** @param {Compoennt}		 	# Slot */
 		onClose, 			/** @param {Event}		 		# 关闭后执行 */
 		onOk, 				/** @param {Event}		 		# 确认时执行 */
+		onOpenBefore, 		/** @param {Event}		 		# 打开之前执行 */
+		onOpen, 			/** @param {Event}		 		# 打开之后执行 */
+		onOpenClose, 		/** @param {Event}		 		# 打开与关闭时执行 */
 		onCancel, 			/** @param {Event}		 		# 点击取消时执行 */
+		onReset, 			/** @param {Event}		 		# 重置执行 */
 		scroll=true, 		/** @param {Boolean}		 	# 是否滚动 */
 		full=false, 		/** @param {Boolean}		 	# 关闭时销毁 Modal 里的子元素 */
 		destroy=true, 		/** @param {Boolean}		 	# 关闭时 */
@@ -23,6 +27,7 @@ const Index = (props, ref) => {
 		disabled, 			/** @param {Boolean}		 	# 禁用 */
 		loadingSize,		/** @param {Boolean}		 	# 加载大小 */
 		mode,				/** @param {Number}		 		# 弹框模式 */
+		formRef,			/** @param {Object}		 		# 表单 Ref */
 		// 标题
 		title, 				/** @param {String}		 		# 标题 */
 		subTitle, 			/** @param {String}		 		# 副标题 */
@@ -40,8 +45,7 @@ const Index = (props, ref) => {
 	
 	const close = useCallback(() => {
 		setShow(false)
-		onClose?.()
-	},[ onClose ])
+	},[ ])
 
 	useEffect(() => {
 		setConfig(props)
@@ -50,11 +54,12 @@ const Index = (props, ref) => {
 	// 设置底部按钮
 	const setControls = useCallback(controls =>{
 		const { add, mod } = config
-		controls = $fn.getResult(controls,{ close, add, mod })
+		controls = $fn.getResult(controls,{ close, formRef, add, mod })
 		if( $fn.isObject( controls ) ){
-			let { ok, cancel, before=[], after=[] } = controls
-			if( cancel === true || cancel === 0) cancel = { hide: true }
-			if( ok === true || ok === 0) ok = { hide: true }
+			let { ok, cancel, reset=0, before=[], after=[] } = controls
+			if( cancel === false || cancel === 0) cancel = { hide: true }
+			if( ok === false || ok === 0) ok = { hide: true }
+			if( reset === false || reset === 0) reset = { hide: true }
 			return [
 				...before,
 				{ label:'取消', type:'default', click:()=>{
@@ -64,8 +69,16 @@ const Index = (props, ref) => {
 						close()
 					}
 				}, ...cancel },
+				{ label:'重置', type:'default', click:()=>{
+					formRef()?.reset?.()
+					const _onReset = controls?.onReset ?? onReset
+					const bool = _onReset?.({close, formRef})
+					if( bool ){
+						close()
+					}
+				}, ...reset },
 				{ label:'确认', click:()=>{
-					if( onOk?.(close) === true){
+					if( onOk?.({close, formRef}) === true){
 						close()
 					}
 				}, ...ok },
@@ -78,7 +91,15 @@ const Index = (props, ref) => {
 	
 	const [ show, setShow ] = useState( open )
 	
+	useEffect(() => {
+		setTimeout(()=>{
+			show ? onOpen?.() : onClose?.()
+			onOpenClose?.(show)
+		})
+	},[ show, onOpen, onClose, onOpenClose ])
+	
 	const openModal = value => {
+		onOpenBefore?.()
 		setShow(true)
 		if( $fn.hasObject( value ) ){ setConfig( value ) }
 	}

@@ -83,7 +83,7 @@ const Index = ({
 	}
 	
 	if(click){
-		isTable ? click({ tableRef, searchRef, index, row:record }) : click({ keys, rows, searchRef, tableRef, label}) 
+		$fn.func(click, isTable ? { tableRef, searchRef, index, row:record } : { keys, rows, searchRef, tableRef, label} )
 	} else if(to){ 
 		$.push(history, to, param)
 	} else if(toNext){

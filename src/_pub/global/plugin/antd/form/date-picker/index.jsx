@@ -37,8 +37,9 @@ const Index = ({
 	const [ model, setModel ] = React.useState()
 	
 	const isRange = type === 'date-range' 
-	
-	p = p ? p : hint + label
+	if(!isRange){
+		p = p ? p : hint + label
+	}
 	
 	const formatType = [
 		`YYYY${s}MM${s}DD`,
@@ -95,9 +96,9 @@ const Index = ({
 			onChanged?.(result)
 		}
 	}
-	
 	antd = {
-		disabled, allowClear, p,
+		disabled, allowClear, 
+		placeholder: p,
 		value : model,
 		style: { width, ...style },
 		//

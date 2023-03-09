@@ -91,14 +91,18 @@ const Index = ({
 		if( !isAuto ){ scrollTop(value ?? 0) }
 	}
 	/* --------------------------- ajax --------------------------- */
-	const fetch = option => {
-		let { param, query, scroll, resetEmpty, resetSearch } = option ?? {}
+	const fetch = useCallback(option => {
+		let { param, query, arg, scroll, resetEmpty, resetSearch } = option ?? {}
 		param = $fn.getResult(param)
 		param = $fn.getSubmitParam(search.data, param)
 		query = $fn.getResult(query)
+		arg = $fn.getResult(arg)
+		if(arg){
+			setAjax.arg = arg
+		}
 		if(api){
 			onLoading?.( true )
-			$http.paging(setAjax, api, { param, query, paging,
+			$http.paging(setAjax, api, { param, query, arg, paging,
 				onEnd: v => onLoading?.( false ),
 				setName: setName ? setName : (isIndex ? (v,i) => ({ index: i }) : null),
 				setParam: search?.setParam,
@@ -118,7 +122,7 @@ const Index = ({
 				onSuccess?.(rows ? rows : data, { param, query })
 			})
 		}
-	}
+	},[ ])  // eslint-disable-line
 	// 排序
 	const onSort = (pagination, filters, sorter) => {
 		let type = null
@@ -141,8 +145,8 @@ const Index = ({
 	/* --------------------------- 默认请求列表 --------------------------- */
 	const onInitFetch = () => {
 		const defaultParam = Utils.getParam($fn.getResult(search.data))
-		const param = $fn.getResult(search?.param)
-		const query = $fn.getResult(search?.query)
+		const param 		= $fn.getResult(search?.param)
+		const query 		= $fn.getResult(search?.query)
 		fetch({ param:{ ...defaultParam, ...param }, query, scroll:true })
 	}
 	useEffect(()=>{
@@ -182,7 +186,7 @@ const Index = ({
 	
 	const [ col, setCol ] = useState([ ])
 	
-	useEffect( ()=> setCol( getCols(cols) ), [ cols ] ) // eslint-disable-line
+	useEffect( ()=> $fn.hasArray(cols) && setCol( getCols(cols) ), [ cols ] ) // eslint-disable-line
 	
 	/* --------------------------- 单选与多选 --------------------------- */
 	const [ selectedRowKeys, setSelectedRowKeys ] = useState(row?.keys ?? [])
@@ -286,18 +290,21 @@ const Index = ({
 	const tableRef = {
 		refresh : scroll => fetch({ scroll: scroll??true }),
 		search: option => {
-			const {param, query, scroll=true} = option ?? {}
-			fetch( { param: isPaging ? { ...param, page: 1} : param, query, scroll })
+			const {param, query, arg, scroll=true} = option ?? {}
+			search.query = { ...search?.query, ...query }
+			fetch( { param: isPaging ? { ...param, page: 1} : param, query:search.query, arg, scroll })
 			clearKeys()
 		},
 		reset: () => {
 			setAjax.model = isPaging ? { page:1, size:ajax.pager?.size ?? $config.paging.pageSize } : {}
 			onInitFetch()
 		},
+		// 清空全部搜索参数，并将数据置空，不搜索
 		resetEmpty: () => {
 			fetch( { resetEmpty:true })
 			clearKeys()
 		},
+		// 清空全部搜索参数并搜索
 		resetSearch: () => {
 			fetch( { resetSearch:true })
 			clearKeys()
@@ -306,7 +313,8 @@ const Index = ({
 			fetch({ scroll: scroll??true })
 			clearKeys()
 		},
-		getParam: () => ajax?.pager?.param, 		// 获取所有参数
+		getParam: () => ajax?.pager?.param || {}, 		// 获取所有参数
+		getArg: () => setAjax.arg || {}, 				// 获取额外参数
 		// 设置选中
 		clearKeys,
 		keys(){ return arguments.length === 1  ? setKeys( arguments[0] ) : getKeys() },

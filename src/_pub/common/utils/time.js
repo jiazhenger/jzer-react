@@ -66,9 +66,21 @@ const _ = {
 	},
 	// 获取时间段
 	duration: {
-		// 时长一天，当天 0 点， 到晚上 12 点
+		// 时长 1 天，当天 0 点， 到晚上 12 点
 		'1-0-12' : ()=>{
-			const dur = 1000 * 60 * 60 
+			const dur = 1000 * 60 * 60 * 24
+			const now = _.getTime()
+			return [_.format( now ) + ' 00:00:00', _.format(now + dur) + ' 23:59:59']
+		},
+		// 前两天
+		'-2-09-12' : ()=>{
+			const dur = 1000 * 60 * 60 * 24 * 2
+			const now = _.getTime()
+			return [_.format( now - dur ) + ' 09:00:00', _.format(now) + ' 23:59:59']
+		},
+		// 时长 7 天，当天 0 点， 到晚上 12 点
+		'7-0-12' : ()=>{
+			const dur = 1000 * 60 * 60 * 24 * 7
 			const now = _.getTime()
 			return [_.format( now ) + ' 00:00:00', _.format(now + dur) + ' 23:59:59']
 		}

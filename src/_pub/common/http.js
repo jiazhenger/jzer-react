@@ -62,16 +62,16 @@ const serializeParam = (body,allowEmpty) => {
 	if(!$fn.hasObject(body)) return ''
 	let param = body
 	let str=''
+	
 	for(var i in param){
+		const value = param[i]
 		if(allowEmpty){
-			str += i + '=' + param[i] + '&'
+			str += i + '=' + (value === undefined ? '' : value) + '&'
 		}else{
-			if($fn.isNotEmpty(param[i])){ str += i + '=' + param[i] + '&' }
+			if($fn.isNotEmpty(value)){ str += i + '=' + value + '&' }
 		}
 	}
-	if (str.charAt(str.length - 1) === '&'){ 
-		str = str.slice(0, str.length - 1)
-	}
+	if (str.charAt(str.length - 1) === '&'){  str = str.slice(0, str.length - 1) }
 	if(str){
 		str = '?' + str
 	}else{
@@ -132,7 +132,6 @@ const setData = (_this, value)=>{
 const HttpRequest = (url, param, action, defined) => {
 	let UD = defined || {}
 	if(!$fn.isString(url) || !$fn.isNotEmpty(url)) { Promise.reject(); return $fn.toast('接口未传递正确') }
-	
 	let empty = action === 'get' ? false : true
 	if(UD.empty !== undefined){ empty = UD.empty }
 	// if( UD.type === 1) { body = qs?.stringify?.(body) }
@@ -143,7 +142,7 @@ const HttpRequest = (url, param, action, defined) => {
 	})
 	
 	UD?.onStart?.()		// 一开始就调用
-	url = $fn.isNotEmpty(UD.id) ? url + '/' + UD.id : url 
+	url = $fn.isNotEmpty(UD.id) ? url + '/' + UD.id : url
 	const m = {
 		'get' 		: () => axios.get( url + serializeParam(param, empty), headerConfig),
 		'delete' 	: () => axios.delete(url + serializeParam(param, empty), headerConfig),
@@ -165,8 +164,7 @@ const HttpRequest = (url, param, action, defined) => {
 				$fn.localRemove('user')
 				$fn.recordSkip()
 				LogInfo(action, url, param, data, 2)
-				setTimeout(() => $fn.go('/login'), 200 )	// 跳转不同登录页
-				$fn?.login?.()
+				$fn.login ? $fn.login?.() : setTimeout(() => $fn.go('/login'), 200 )	// 跳转不同登录页
 				if(UD.pass){ resolve(null)}					// 失败时，是否继续异步
 				//
 				window?.$modalRef?.()?.close?.()
@@ -358,19 +356,21 @@ const paging = (_this,api,option)=>{
 	if( !api ) { Promise.reject(); return $fn.toast('接口未传递正确') }
 	const {dataName = 'data', pageSizeName='size', pageNumName='page', totalItemsName='total_items', totalPagesName='total_pages', pageSize = 10  } = $config?.paging || {}
 	
-	const optParam = $fn.getResult(opt.param)
-	const optQuery = $fn.getResult(opt.query)
+	const optParam 		= $fn.getResult(opt.param) 		// 搜索保留、重置不保留
+	const optQuery 		= $fn.getResult(opt.query)		// 搜索保留、重置保留
+	const optArg 		= $fn.getResult(opt.arg)		// 搜索不保留、重置不保留
 	let model = optParam
-	if( opt.resetEmpty ) opt.resetSearch = true
+	if( opt.resetEmpty ) opt.resetSearch = true 		// 重置搜索
 	if(_this){
-		const thisModel = $fn.getResult(_this.model)
-		const thisQuery = $fn.getResult(_this.query)
+		const thisModel 		= $fn.getResult(_this.model)
+		const thisQuery 		= $fn.getResult(_this.query)
 		_this.model = opt.resetSearch ? {} : { ...thisModel, ...optParam }
 		_this.query = opt.resetSearch ? {} : { ...thisQuery, ...optQuery }
 		model = _this?.model
 	}
 	let param = model
 
+	// 重置搜索为空数据
 	if(opt.resetEmpty) {
 		opt.loading && $fn.loading(false)
 		_this?.onLoading?.(_this.loading)
@@ -388,10 +388,11 @@ const paging = (_this,api,option)=>{
 		const { page, size } = param ??  {}
 
 		param = {
-			page : page || 1, 		// 当前页
+			page : page || 1, 				// 当前页
 			size : size || pageSize,		// 每页显示多少条数据
 			..._this?.query,
-			...model
+			...model,
+			...optArg
 		}
 
 		// param[ pageNumName ] = param.page
@@ -399,7 +400,7 @@ const paging = (_this,api,option)=>{
 		// if( pageNumName !== 'page' ){ delete param.page }
 		// if( pageSizeName !== 'size' ){ delete param.size }
 	}else{
-		param = {..._this?.query, ...model}
+		param = {..._this?.query, ...optArg, ...model}
 	}
 	
 	return new Promise((resolve)=>{
@@ -414,6 +415,7 @@ const paging = (_this,api,option)=>{
 			loadingName : opt.loadingName,
 			setParam 	: opt.setParam,
 			paging 		: true,
+			empty 		: true,
 			param,
 			id			: opt.id,
 		}).then( result =>{

@@ -28,14 +28,14 @@ const Index = ({
 	colon,									/** @param {Boolean}			# 是否有冒号 */
 	resetText='重置',						/** @param {String}				# 取消字段 */
 	hideReset,								/** @param {String}				# 是否隐藏取消字段 */
-	width=160,								/** @param {Number}				# 全部默认宽度 */
+	width,								/** @param {Number}				# 全部默认宽度 */
 	controls={},							/** @param {Object}				# 操作按钮配置 */
 	cache=$config.cache,					/** @param {Boolan}				# 是否缓存 */
 	openPos,								/** @param {String}				# 伸缩按钮位置 right、center */
 	show=true,								/** @param {Boolan}				# 显示隐藏 */
 	/* --------------------------- SearchForm 配置 --------------------------- */
 	labelWidth, 							/** @param {String}				# 标签宽度 */
-	padding='8px 0', 						/** @param {String}				# 搜索盒子补白 */
+	padding=8, 								/** @param {String}				# 搜索盒子补白 */
 	param,									/** @param {Object}				# 搜索默认参数 */
 	query,									/** @param {Object}				# 搜索固定参数 */
 	// 插入组件
@@ -56,14 +56,16 @@ const Index = ({
 	const setControls = useCallback( formRef =>{
 		const rsCtr = $fn.getResult(controls,{ formRef })
 		if( $fn.isObject( rsCtr ) ){
-			const { search, reset, before=[], after=[] } = rsCtr
+			let { search, reset, before=[], after=[] } = rsCtr
+			before = $fn.getResult(before)
+			after = $fn.getResult(after)
 			return ([
 				...before,
 				{ label:'重置', ghost:1, mode:'reset', click:()=> {
-					formRef.reset()
+					formRef?.reset?.()
 					onReset?.(formRef)
 				}, ...reset},
-				{ label:'搜索', mode:'search',ghost:1, antd: { htmlType:'submit', disabled, ...search } },
+				{ label:'搜索', mode:'search', click:formRef?.submit, ghost:1, disabled, ...search },
 				...after,
 			]).map(v => ({ disabled,  ...v }) )
 		}else{
@@ -78,14 +80,14 @@ const Index = ({
 	const [ btnData, setBtnData ] = useState([])
 	
 	let controlsMt = 0
-	let paddingStyle = { padding }
+	let paddingStyle = { padding: `${$fn.strToNum(padding)}px 0 ` }
 	if( !x ){
 		controlsMt = gapY
 		controls.align = controls.align !== 'center' ? controls.align : 'start'
 	}
 	
 	// FormItem
-	const itemList = { size, colon, width, readOnly, onChanged, gapX, gapY, x, cache,
+	const itemList = { size, colon, width, readOnly, onChanged, gapX, gapY, x, cache, labelWidth,
 		data:result, 
 		mt:0, 
 		isSearch:true,
@@ -113,7 +115,7 @@ const Index = ({
 		ref: () => ({ 
 			...$.ref(formRef), 
 			update,
-			updateControls: () => setBtnData( setControls( formRef ) )
+			updateControls: () => setBtnData( setControls( $.ref(formRef) ) )
 		})
 	}))
 	
@@ -132,7 +134,7 @@ const Index = ({
 				param = $fn.getResult(param)
 				query = $fn.getResult(query)
 				const queryParam = { ...query, ...param }
-				
+				console.log(result)
 				formRef.setDefaultValue( result, param )
 				
 				onInit?.({ formRef, param, query, queryParam })
