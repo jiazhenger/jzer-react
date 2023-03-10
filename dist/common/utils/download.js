@@ -7,30 +7,44 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/_pub/common/utils/download.js":
 /*!*******************************************!*\
   !*** ./src/_pub/common/utils/download.js ***!
   \*******************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: [BABEL] F:\\\\jia-git\\\\jzer-react-template\\\\src\\\\_pub\\\\common\\\\utils\\\\download.js: Using `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables. Valid values are \\\"development\\\", \\\"test\\\", and \\\"production\\\". Instead, received: undefined. (While processing: \\\"F:\\\\\\\\jia-git\\\\\\\\jzer-react-template\\\\\\\\node_modules\\\\\\\\babel-preset-react-app\\\\\\\\index.js\\\")\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\create.js:58:11)\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\index.js:19:10)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:36:33)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:186:15)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13\\n    at Generator.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:181:21\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:21:3)\\n    at Generator.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at Function.errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:18)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:188:31)\\n    at onFirstPause (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:52:46)\\n    at cachedFunction.next (<anonymous>)\\n    at loadPresetDescriptor (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:294:43)\\n    at loadPresetDescriptor.next (<anonymous>)\\n    at recursePresetDescriptors (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:77:31)\\n    at recursePresetDescriptors.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:157:21\\n    at Generator.next (<anonymous>)\\n    at loadFullConfig (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:113:5)\\n    at loadFullConfig.next (<anonymous>)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:20:45)\\n    at transform.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at stopHiding - secret - don't use this - v1 (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\errors\\\\rewrite-stack-trace.js:46:12)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:39:72)\\n    at internal/util.js:340:30\\n    at new Promise (<anonymous>)\\n    at transform (internal/util.js:339:12)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:15:22\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:194)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:364\\n    at new Promise (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:97\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:48:17\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:130:26\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:4:194)\");\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/download.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n// const dispatch = obj => {\n// \tconst ev = document.createEvent('MouseEvents')\n// \tev.initMouseEvent(\n// \t\t'click', \n// \t\ttrue, \n// \t\tfalse, \n// \t\twindow, \n// \t\t0, \n// \t\t0, \n// \t\t0, \n// \t\t0, \n// \t\t0, \n// \t\tfalse, \n// \t\tfalse, \n// \t\tfalse, \n// \t\tfalse, \n// \t\t0, \n// \t\tnull\n// \t)\n// \tobj.dispatchEvent(ev)\n// }\n\nconst types = {\n  xlsx: 'vnd.openxmlformats-officedocument.spreadsheetml.sheet',\n  xls: 'vnd.ms-excel',\n  pdf: 'pdf',\n  word: 'vnd.openxmlformats-officedocument.wordprocessingml.document',\n  txt: 'text'\n};\nconst Index = {\n  // blobDispath(data, option) {\n  // \tconst {fileType = 'xlsx', fileName = 'download'} = option ?? {}\n\n  // \tconst urlObject = window.URL || window.webkitURL || window\n\n  // \tconst blob = new Blob([ data ],  { type: `application/${types[ fileType ]}; charset=utf-8`})\n\n  // \tconst link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')\n\n  // \tlink.href = urlObject.createObjectURL(blob)\n\n  // \tlink.download = fileName\n\n  // \tlink.style.display = 'none'\n\n  // \tdispatch(link)\n  // },\n  blob(data, option) {\n    const {\n      fileType = 'xlsx',\n      fileName = 'download'\n    } = option ?? {};\n    const urlObject = window.URL || window.webkitURL || window;\n    const blob = new Blob([data], {\n      type: `application/${types[fileType]}; charset=utf-8`\n    });\n    const link = document.createElement('a');\n    link.href = urlObject.createObjectURL(blob);\n    link.download = fileName;\n    link.style.display = 'none';\n    document.body.appendChild(link);\n    link.click();\n    document.body.removeChild(link);\n  },\n  // url 后台下载\n  form(url) {\n    const form = document.createElement('form');\n    form.method = 'post';\n    form.action = window.$config.api() + url;\n    form.target = '_blank';\n    // token 验证\n    const tokenInput = document.createElement('input');\n    tokenInput.type = 'hidden';\n    tokenInput.name = 'token';\n    tokenInput.value = window.$fn.getToken();\n    //\n    form.appendChild(tokenInput);\n    document.body.appendChild(form);\n    form.submit();\n    document.body.removeChild(form);\n  }\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (Index);\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/download.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/_pub/common/utils/download.js"]();
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	var __webpack_exports_export__ = __webpack_exports__["default"];
-/******/ 	for(var i in __webpack_exports_export__) __webpack_export_target__[i] = __webpack_exports_export__[i];
-/******/ 	if(__webpack_exports_export__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+/******/ 	__webpack_modules__["./src/_pub/common/utils/download.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;

@@ -1,7 +1,10 @@
 {
 	"name": "jzer-react-template",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "React 后台管理系统模板",
+	"files": [
+		"dist"
+	],
 	"dependencies": {
 		"antd": "^4.24.7",
 		"axios": "^0.24.0",
@@ -19,20 +22,31 @@
 		"virtuallist-antd": "^0.7.2"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.21.0",
 		"@babel/plugin-proposal-decorators": "^7.16.5",
+		"@babel/preset-env": "^7.20.2",
 		"@craco/craco": "^6.4.3",
+		"@rollup/plugin-alias": "^4.0.3",
+		"@rollup/plugin-babel": "^6.0.3",
+		"@rollup/plugin-json": "^6.0.0",
+		"@rollup/plugin-node-resolve": "^15.0.1",
+		"@rollup/plugin-terser": "^0.4.0",
 		"babel-plugin-import": "^1.13.3",
+		"clean-webpack-plugin": "^4.0.0",
 		"craco-less": "^2.0.0",
 		"interpolate-html-plugin": "^4.0.0",
 		"react-scripts": "^5.0.0",
+		"rollup-plugin-babel": "^4.4.0",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-typescript2": "^0.34.1",
 		"terser-webpack-plugin": "5.2.5",
 		"web-vitals": "^2.1.2",
-		"webpack-cli": "^5.0.1",
-		"clean-webpack-plugin": "^4.0.0"
+		"webpack-cli": "^5.0.1"
 	},
 	"scripts": {
 		"start": "craco start",
-		"build": "webpack build --stats-error-details",
+		"build": "rollup -c",
+		"clean": "rimraf ./dist",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},

@@ -7,30 +7,186 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/_pub/global/plugin/echart/echart.jsx":
 /*!**************************************************!*\
   !*** ./src/_pub/global/plugin/echart/echart.jsx ***!
   \**************************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: [BABEL] F:\\\\jia-git\\\\jzer-react-template\\\\src\\\\_pub\\\\global\\\\plugin\\\\echart\\\\echart.jsx: Using `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables. Valid values are \\\"development\\\", \\\"test\\\", and \\\"production\\\". Instead, received: undefined. (While processing: \\\"F:\\\\\\\\jia-git\\\\\\\\jzer-react-template\\\\\\\\node_modules\\\\\\\\babel-preset-react-app\\\\\\\\index.js\\\")\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\create.js:58:11)\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\index.js:19:10)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:36:33)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:186:15)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13\\n    at Generator.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:181:21\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:21:3)\\n    at Generator.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at Function.errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:18)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:188:31)\\n    at onFirstPause (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:52:46)\\n    at cachedFunction.next (<anonymous>)\\n    at loadPresetDescriptor (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:294:43)\\n    at loadPresetDescriptor.next (<anonymous>)\\n    at recursePresetDescriptors (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:77:31)\\n    at recursePresetDescriptors.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:157:21\\n    at Generator.next (<anonymous>)\\n    at loadFullConfig (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:113:5)\\n    at loadFullConfig.next (<anonymous>)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:20:45)\\n    at transform.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at stopHiding - secret - don't use this - v1 (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\errors\\\\rewrite-stack-trace.js:46:12)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:39:72)\\n    at internal/util.js:340:30\\n    at new Promise (<anonymous>)\\n    at transform (internal/util.js:339:12)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:15:22\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:194)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:364\\n    at new Promise (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:97\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:48:17\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:130:26\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:4:194)\");\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/global/plugin/echart/echart.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var echarts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! echarts */ \"./node_modules/echarts/index.js\");\n\n\n/**\r\n * 图表\r\n * @return {Component}\r\n */\nconst Index = ({\n  option\n}) => {\n  const ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();\n  react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {\n    let myEecharts;\n    if (option) {\n      const {\n        current\n      } = ref;\n      if (current) {\n        myEecharts = echarts__WEBPACK_IMPORTED_MODULE_1__.getInstanceByDom(current);\n        if (myEecharts === undefined) {\n          myEecharts = echarts__WEBPACK_IMPORTED_MODULE_1__.init(current);\n        }\n        myEecharts.setOption(option || {});\n      }\n    } else {\n      return;\n    }\n    myEecharts.resize();\n    const resize = () => setTimeout(myEecharts.resize);\n    window.addEventListener('resize', resize);\n    return () => window.removeEventListener('resize', resize);\n  }, [option, ref]);\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    ref: ref,\n    className: \"abs_lt wh\"\n  });\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (Index);\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/global/plugin/echart/echart.jsx?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	!function() {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = function(result, chunkIds, fn, priority) {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var chunkIds = deferred[i][0];
+/******/ 				var fn = deferred[i][1];
+/******/ 				var priority = deferred[i][2];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every(function(key) { return __webpack_require__.O[key](chunkIds[j]); })) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	!function() {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	!function() {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"global/plugin/echart/": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = function(chunkId) { return installedChunks[chunkId] === 0; };
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = function(parentChunkLoadingFunction, data) {
+/******/ 			var chunkIds = data[0];
+/******/ 			var moreModules = data[1];
+/******/ 			var runtime = data[2];
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some(function(id) { return installedChunks[id] !== 0; })) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkjzer_react_template"] = self["webpackChunkjzer_react_template"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	}();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/_pub/global/plugin/echart/echart.jsx"]();
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	var __webpack_exports_export__ = __webpack_exports__["default"];
-/******/ 	for(var i in __webpack_exports_export__) __webpack_export_target__[i] = __webpack_exports_export__[i];
-/******/ 	if(__webpack_exports_export__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react_index_js","vendors-node_modules_echarts_index_js"], function() { return __webpack_require__("./src/_pub/global/plugin/echart/echart.jsx"); })
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;

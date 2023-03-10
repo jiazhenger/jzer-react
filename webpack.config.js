@@ -4,11 +4,9 @@ const cleanPlugin = new CleanWebpackPlugin()
 const resolve = dir => require('path').join(__dirname,dir)
 
 module.exports = {
-	mode: 'production',	// development为开发环境，production为生产环境
+	mode: 'development',	// development为开发环境，production为生产环境
 	entry:  {
 		'common/global': resolve('./src/_pub/common/global.js'),
-		'common/http': resolve('./src/_pub/common/http.js'),
-		'common/fn': resolve('./src/_pub/common/fn.js'),
 		
 		'common/login/login': resolve('./src/_pub/common/login/login.js'),
 		'common/login/logout': resolve('./src/_pub/common/login/logout.js'),
@@ -83,8 +81,8 @@ module.exports = {
 	output: {
 		path: resolve('./dist'),					// 打包后的文件存放的地方
 		// filename:'[name].js',					// 打包后输出文件的文件名
-		libraryTarget: 'commonjs',
-		libraryExport: 'default',
+		libraryTarget: 'commonjs2',
+		// libraryExport: 'default',
 		clean: true
 	},
 	plugins: [ cleanPlugin ],
@@ -134,8 +132,8 @@ module.exports = {
 					// 减少代码体积
 					plugins: ['@babel/plugin-transform-runtime'],
 					// 
-					babelrc: false,
-					presets: [require.resolve('babel-preset-react-app')],
+					// babelrc: false,
+					// presets: [require.resolve('babel-preset-react-app')],
 				 } 
 			}
 		],

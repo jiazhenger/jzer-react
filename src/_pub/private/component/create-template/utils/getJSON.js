@@ -17,7 +17,7 @@ const setDataType = (type,value)=>{
 const deep = (data, json, dataType) => {
 	data.forEach( items => {
 		let { key, children, value, add, isObject, isArray, isObjectData, isFunction } = items
-		if(isFunction){
+		if(isFunction && $fn.isString(value)){
 			json[key] = value
 			return
 		}

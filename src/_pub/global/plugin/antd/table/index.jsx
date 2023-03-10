@@ -64,6 +64,8 @@ const Index = ({
 	// 作为 Form 的元素
 	isRows, 					/** @param {Boolean}			# 暴露参数是否是 rows 数据 */
 	isSubmitForm, 				/** @param {Boolean}			# 是否是在提交表单中 */
+	onChange, 					/** @param {Event}				# 表单自动提交事件 */
+	value=[], 						/** @param {Array}				# 接收表单数据 */
 	// antd
 	antd, 						/** @param {Object}				# antd */
 	emptyText 					/** @param {Object}				# 自定义空数据时提示 */
@@ -76,6 +78,18 @@ const Index = ({
 	const isAuto = height === 'auto'
 	const isPaging = paging !== 0 && paging !== false
 	const tableDomRef = useRef()
+	/* --------------------------- 表单中的 table --------------------------- */
+	useEffect(()=>{
+		if(isSubmitForm){
+			let rs = $fn.isArray(value) ? value: []
+			if(row){
+				setSelectedRowKeys( rs )
+			}else{
+				if(isIndex) rs = (v,i) => ({ ...v, index: i })
+				setTimeout(()=>setAjax({ data: [...rs] }), 50)
+			}
+		}
+	},[ row, isIndex, isSubmitForm, value ])
 	/* --------------------------- 滚动顶部 --------------------------- */
 	const scrollTop = value => {
 		const { current } = tableDomRef
@@ -268,6 +282,7 @@ const Index = ({
 		row.keys = k
 		setSelectedRowKeys( [...k] )
 		onKeysChange?.( [...k] )
+		if(isSubmitForm){ onChange?.( k ) }
 		row?.change?.({ keys:row.type ?  keys?.[0] ?? null : keys, rows: $fn.hasArray(rows) ? ( ()=> row.type ? rows?.[0] : rows ) : ()=>getRows(keys), tableRef })
  	}, [ ajax.data ]) // eslint-disable-line
 	const getKeys = useCallback(() => {

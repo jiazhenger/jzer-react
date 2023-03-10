@@ -23,6 +23,7 @@ export const wayData = onData([
 
 export const formTypeData = onData([
 	{ label:'文本框', 		value:'text' },
+	{ label:'输入范围', 		value:'input-range' },
 	{ label:'密码框', 		value:'password' },
 	{ label:'数字', 		value:'number' },
 	{ label:'文本域', 		value:'textarea' },
@@ -93,6 +94,7 @@ export const formData = [
 	{ title: '自动宽度', 	key: 'full', type:'switch' },
 	{ title: '自定义宽度', 	key: 'width' },
 	{ title: '是否换行', 	key: 'br', type:'switch' },
+	{ title: '提示文字', 	key: 'p' },
 	// switch
 	{ title: '值为布尔值', 	key: 'bool', type:'switch' },
 	// data-picker

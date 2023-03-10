@@ -134,7 +134,7 @@ const Index = ({
 				param = $fn.getResult(param)
 				query = $fn.getResult(query)
 				const queryParam = { ...query, ...param }
-				console.log(result)
+				
 				formRef.setDefaultValue( result, param )
 				
 				onInit?.({ formRef, param, query, queryParam })
@@ -144,8 +144,8 @@ const Index = ({
 			onSubmit 	= { formParam => {
 				param = $fn.getResult(param)
 				query = $fn.getResult(query)
-				param = { ...query, ...param, ...formParam }
-				onSubmit?.( param )
+				param = { ...param, ...formParam }
+				onSubmit?.( { param, query } )
 			}}
 		>
 			<>

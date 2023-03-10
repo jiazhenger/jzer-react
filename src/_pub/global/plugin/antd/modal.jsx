@@ -87,7 +87,7 @@ const Index = (props, ref) => {
 		}else{
 			return controls
 		}
-	},[close, onCancel, onOk, config])
+	},[formRef, onReset, close, onCancel, onOk, config])
 	
 	const [ show, setShow ] = useState( open )
 	

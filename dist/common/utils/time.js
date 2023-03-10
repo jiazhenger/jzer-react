@@ -7,30 +7,44 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/_pub/common/utils/time.js":
 /*!***************************************!*\
   !*** ./src/_pub/common/utils/time.js ***!
   \***************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: [BABEL] F:\\\\jia-git\\\\jzer-react-template\\\\src\\\\_pub\\\\common\\\\utils\\\\time.js: Using `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables. Valid values are \\\"development\\\", \\\"test\\\", and \\\"production\\\". Instead, received: undefined. (While processing: \\\"F:\\\\\\\\jia-git\\\\\\\\jzer-react-template\\\\\\\\node_modules\\\\\\\\babel-preset-react-app\\\\\\\\index.js\\\")\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\create.js:58:11)\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\index.js:19:10)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:36:33)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:186:15)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13\\n    at Generator.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:181:21\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:21:3)\\n    at Generator.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at Function.errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:18)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:188:31)\\n    at onFirstPause (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:52:46)\\n    at cachedFunction.next (<anonymous>)\\n    at loadPresetDescriptor (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:294:43)\\n    at loadPresetDescriptor.next (<anonymous>)\\n    at recursePresetDescriptors (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:77:31)\\n    at recursePresetDescriptors.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:157:21\\n    at Generator.next (<anonymous>)\\n    at loadFullConfig (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:113:5)\\n    at loadFullConfig.next (<anonymous>)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:20:45)\\n    at transform.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at stopHiding - secret - don't use this - v1 (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\errors\\\\rewrite-stack-trace.js:46:12)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:39:72)\\n    at internal/util.js:340:30\\n    at new Promise (<anonymous>)\\n    at transform (internal/util.js:339:12)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:15:22\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:194)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:364\\n    at new Promise (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:97\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:48:17\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:130:26\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:4:194)\");\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/time.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst formatNumber = function (n) {\n  n = n.toString();\n  return n[1] ? n : '0' + n;\n};\nconst join = function (arr, split) {\n  return arr.map(formatNumber).join(split);\n};\nconst _ = {\n  full: function (time) {\n    var date = new Date(time);\n    return {\n      year: date.getFullYear(),\n      month: date.getMonth() + 1,\n      day: date.getDate(),\n      h: date.getHours(),\n      m: date.getMinutes(),\n      s: date.getSeconds()\n    };\n  },\n  format: function (time, option) {\n    var opt = {\n      s: '-',\n      l: 'en',\n      t: 'ymd',\n      ...option\n    };\n    var str = null;\n    var date = null;\n    if (typeof time === 'string') {\n      date = this.getTime(time);\n    } else if (time instanceof Date) {\n      date = time.getTime();\n    } else {\n      date = time;\n    }\n    if (date) {\n      var t = this.full(date);\n      switch (opt.t) {\n        case 'full':\n          str = join([t.year, t.month, t.day], opt.s) + ' ' + join([t.h, t.m, t.s], ':');\n          break;\n        case 'ymd-last':\n          const hm = opt.custom ? join([t.h, t.m, t.s], ':') : '23:59:59';\n          str = join([t.year, t.month, t.day], opt.s) + ' ' + hm;\n          break;\n        case 'ymd-hm':\n          str = join([t.year, t.month, t.day], opt.s) + ' ' + join([t.h, t.m], ':');\n          break;\n        case 'ymd':\n          str = opt.l === 'zh' ? t.year + '年' + t.month + '月' + t.day + '日' : join([t.year, t.month, t.day], opt.s);\n          break;\n        case 'hms':\n          str = join([t.h, t.m, t.s], ':');\n          break;\n        case 'hm':\n          str = join([t.h, t.m], ':');\n          break;\n        default:\n          break;\n      }\n    }\n    return str;\n  },\n  getTime(time) {\n    return time ? new Date(time).getTime() : new Date().getTime();\n  },\n  // 获取当前时间\n  getNow() {\n    return this.format(this.getTime(), {\n      t: 'full'\n    });\n  },\n  // 获取时间段\n  duration: {\n    // 时长 1 天，当天 0 点， 到晚上 12 点\n    '1-0-12': () => {\n      const dur = 1000 * 60 * 60 * 24;\n      const now = _.getTime();\n      return [_.format(now) + ' 00:00:00', _.format(now + dur) + ' 23:59:59'];\n    },\n    // 前两天\n    '-2-09-12': () => {\n      const dur = 1000 * 60 * 60 * 24 * 2;\n      const now = _.getTime();\n      return [_.format(now - dur) + ' 09:00:00', _.format(now) + ' 23:59:59'];\n    },\n    // 时长 7 天，当天 0 点， 到晚上 12 点\n    '7-0-12': () => {\n      const dur = 1000 * 60 * 60 * 24 * 7;\n      const now = _.getTime();\n      return [_.format(now) + ' 00:00:00', _.format(now + dur) + ' 23:59:59'];\n    }\n  }\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (_);\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/time.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/_pub/common/utils/time.js"]();
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	var __webpack_exports_export__ = __webpack_exports__["default"];
-/******/ 	for(var i in __webpack_exports_export__) __webpack_export_target__[i] = __webpack_exports_export__[i];
-/******/ 	if(__webpack_exports_export__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+/******/ 	__webpack_modules__["./src/_pub/common/utils/time.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;

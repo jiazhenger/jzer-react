@@ -4,6 +4,7 @@ const { $lazy, $fn, $, $config } = window
 /* -------------------------------------------------------- Async Component -- */
 const FormItem = $lazy.load(()=>import('@antd/form/layout/item'))
 const Input = $lazy.load(()=>import('@antd/form/input'))
+const InputRange = $lazy.load(()=>import('@antd/form/input-range'))
 const Select = $lazy.load(()=>import('@antd/form/select'))
 const Checkbox = $lazy.load(()=>import('@antd/form/checkbox'))
 const CheckboxGroup = $lazy.load(()=>import('@antd/form/checkbox-group'))
@@ -89,10 +90,15 @@ const Index = ({
 					let elWidth = '100%'
 					
 					if(isSearch && !labelWidth){
-						if(['text','password','textarea','number', 'tree-select', 'select','date', 'date-range'].includes( type ) || !type){
+						elWidth = 160
+						if(['input-range'].includes( type )){
+							elWidth = elWidth * 2
+						}
+						if(['text','password','textarea','number', 'input-range', 'tree-select', 'select','date', 'date-range'].includes( type ) || !type){
 							const _width  = v.width || width
 							if( _width ) elWidth = $fn.strToNum(_width)
 						}
+						
 					}
 					
 					if( $fn.isNotEmpty( hide ) ){
@@ -125,6 +131,9 @@ const Index = ({
 							break
 						case 'radio':
 							Component = <Radio {...apiElement} {...el} bool={bool}/>
+							break
+						case 'input-range':
+							Component = <InputRange width={elWidth} {...el} />
 							break
 						case 'upload':
 							el = { mode, click, api, fileType:v.fileType, ...el}
@@ -165,7 +174,7 @@ const Index = ({
 							Component = <Transfer {...el} />
 							break
 						case 'table':
-							Component = <Table {...table}/>
+							Component = <Table isSubmitForm {...table}/>
 							break
 						case 'select-content':
 							el = { mode, click, ...el}

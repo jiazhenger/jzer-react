@@ -15,7 +15,7 @@ const Index = ({ page, box, search, table, height, className, style, onTableRef 
 	/* --------------------------- 搜索配置 --------------------------- */
 	const searchConfig = $fn.hasObject(search) ?  {
 		loading,
-		onSubmit: param => $.ref(tableRef).search( { param } ),
+		onSubmit: option => $.ref(tableRef).search( option ),
 		onReset : () => $.ref(tableRef).reset(),
 		...search
 	} : null

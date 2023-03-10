@@ -37,7 +37,7 @@ const Index = ({ data=[], hide, height, loading, loadingSize, emptyText='暂无�
                     <>
                         <Timeline className='ex'>
                             {
-                                result.map((v,i)=><Timeline.Item key={i}>{v.children}</Timeline.Item>)
+                                result.map((v,i)=><Timeline.Item key={i} color={v.color}>{v.children}</Timeline.Item>)
                             }
                         </Timeline>
                         { hidden ? null : children }

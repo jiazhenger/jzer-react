@@ -33,7 +33,7 @@ const Index = ({
 		if( $fn.hasArray( rows ) ){
 			rows.forEach(v=>{ 
 				if( $fn.hasObject(v) && ($fn.isNotEmpty(v.value) || $fn.isNotEmpty(v.defaultValue))){ 
-					stack[v.name] = v.type.includes('date-range') && v.defaultValue ? $time.duration[v.defaultValue]() : v.value
+					stack[v.name] = ($fn.isString(v.type) && v.type.includes('date-range') && v.defaultValue) ? $time.duration[v.defaultValue]() : v.value
 				}
 			})
 		}

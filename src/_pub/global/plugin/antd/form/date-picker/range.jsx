@@ -34,7 +34,6 @@ const Index = ({
 	const [ model, setModel ] = React.useState(value)
 	const [ startBefore, setStartBefore ] = React.useState()
 	const [ endAfter, setEndAfter ] = React.useState()
-	const valueRef =  React.useRef()
 	
 	const props = {
 		disabled,
@@ -45,7 +44,15 @@ const Index = ({
 		width: '100%'
 	}
 	
-	React.useEffect(()=> $fn.hasArray(value) && setModel( value ), [ value ]) 
+	React.useEffect(()=> $fn.hasArray(value) && setModel( value ), [ value ])
+	
+	const _onChange = React.useCallback(value => {
+		onChange?.( value )
+		if( onChanged || form ){
+			const result = $fn.getFormFormat({label, name, value, form, formType:'text' })
+			onChanged?.(result)
+		}
+	},[  ])  // eslint-disable-line
 	
 	const onBeginChange = React.useCallback( value =>{
 		setModel( d => {
@@ -53,36 +60,27 @@ const Index = ({
 			_onChange(d)
 			return d
 		})
-	},[])
+	},[ _onChange ])
 	
 	const onFinishChange = React.useCallback( value =>{
 		setModel( d => {
 			d[1] = value
-			const v = d[0]
 			_onChange(d)
 			return d
 		})
-	},[])
-	
-	const _onChange = value => {
-		onChange?.( value )
-		if( onChanged || form ){
-			const result = $fn.getFormFormat({label, name, value, form, formType:'text' })
-			onChanged?.(result)
-		}
-	}
+	},[ _onChange ])
 	
 	const onStartOpenChange = React.useCallback(bool=>{
 		if(bool){
 			setStartBefore( model?.[1] )
 		}
-	},[])
+	},[ model ])
 	
 	const onEndOpenChange = React.useCallback(bool=>{
 		if(bool){
 			setEndAfter( model?.[0] )
 		}
-	},[])
+	},[ model ])
 	
 	return (
 		 <div style={{width, gap:5, ...style}} className='fxm'>

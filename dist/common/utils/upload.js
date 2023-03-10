@@ -7,30 +7,61 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/_pub/common/utils/upload.js":
 /*!*****************************************!*\
   !*** ./src/_pub/common/utils/upload.js ***!
   \*****************************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: [BABEL] F:\\\\jia-git\\\\jzer-react-template\\\\src\\\\_pub\\\\common\\\\utils\\\\upload.js: Using `babel-preset-react-app` requires that you specify `NODE_ENV` or `BABEL_ENV` environment variables. Valid values are \\\"development\\\", \\\"test\\\", and \\\"production\\\". Instead, received: undefined. (While processing: \\\"F:\\\\\\\\jia-git\\\\\\\\jzer-react-template\\\\\\\\node_modules\\\\\\\\babel-preset-react-app\\\\\\\\index.js\\\")\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\create.js:58:11)\\n    at module.exports (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-preset-react-app\\\\index.js:19:10)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:36:33)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:186:15)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13\\n    at Generator.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:181:21\\n    at Generator.next (<anonymous>)\\n    at Function.<anonymous> (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:21:3)\\n    at Generator.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at Function.errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\gensync-utils\\\\async.js:66:18)\\n    at async (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:188:31)\\n    at onFirstPause (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:216:13)\\n    at Generator.next (<anonymous>)\\n    at cachedFunction (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\caching.js:52:46)\\n    at cachedFunction.next (<anonymous>)\\n    at loadPresetDescriptor (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:294:43)\\n    at loadPresetDescriptor.next (<anonymous>)\\n    at recursePresetDescriptors (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:77:31)\\n    at recursePresetDescriptors.next (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:157:21\\n    at Generator.next (<anonymous>)\\n    at loadFullConfig (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\config\\\\full.js:113:5)\\n    at loadFullConfig.next (<anonymous>)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:20:45)\\n    at transform.next (<anonymous>)\\n    at step (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:269:25)\\n    at evaluateAsync (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:291:5)\\n    at errback (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\gensync\\\\index.js:113:7)\\n    at stopHiding - secret - don't use this - v1 (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\errors\\\\rewrite-stack-trace.js:46:12)\\n    at transform (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\@babel\\\\core\\\\lib\\\\transform.js:39:72)\\n    at internal/util.js:340:30\\n    at new Promise (<anonymous>)\\n    at transform (internal/util.js:339:12)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:15:22\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:194)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:364\\n    at new Promise (<anonymous>)\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:4:97\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\transform.js:48:17\\n    at F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:130:26\\n    at Generator.next (<anonymous>)\\n    at asyncGeneratorStep (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:3:103)\\n    at _next (F:\\\\jia-git\\\\jzer-react-template\\\\node_modules\\\\babel-loader\\\\lib\\\\cache.js:4:194)\");\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/upload.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"FormDataUploader\": function() { return /* binding */ FormDataUploader; },\n/* harmony export */   \"getUpload\": function() { return /* binding */ getUpload; },\n/* harmony export */   \"upload\": function() { return /* binding */ upload; }\n/* harmony export */ });\n/* ====================================== 上传图片  ====================================== */\nconst {\n  $fn,\n  $http\n} = window;\nconst imageType = ['jpg', 'png', 'jpeg', 'gif'];\nconst maxMB = 2;\nconst maxKB = 1024 * 1024 * maxMB;\n\n// FormData 上传\nconst FormDataUploader = (name, files, param) => {\n  let fd = new FormData();\n  for (let i = 0; i < files.length; i++) {\n    fd.append(name, files[i]);\n  }\n  if (fd.get(name) === null) {\n    return;\n  }\n  if (param) {\n    for (var i in param) {\n      if (param.hasOwnProperty(i)) {\n        fd.append(i, param[i]);\n      }\n    }\n  }\n  return fd; // 相当于 { 'name':, ...param }\n};\n\nconst upload = ({\n  api,\n  change,\n  param,\n  way,\n  mul\n}) => {\n  let $upload = document.querySelector('#jz-upload');\n  if (!$upload) {\n    $upload = document.createElement('input');\n    if (mul) {\n      $upload.setAttribute('multiple', 'multiple');\n    }\n    $upload.setAttribute('type', 'file');\n  }\n  $upload.click();\n  $upload.onchange = e => {\n    const fd = FormDataUploader('file', e.target.files, param);\n    $http.upload(null, api, {\n      param: fd,\n      way\n    }).then(data => {\n      change === null || change === void 0 ? void 0 : change(data);\n    });\n    $upload.value = '';\n  };\n};\nconst getUpload = async (e, option) => {\n  const opt = {\n    name: 'file',\n    param: {},\n    ...option\n  };\n  if (!$fn.hasObject(e) || !e.target) {\n    return $fn.toast('未选择要上传的图片');\n  }\n  const files = e.target.files;\n  let yes = true;\n  for (var i = 0; i < files.length; i++) {\n    const file = files[i];\n    // 判断上传文件格式\n    const suffix = file.name.substring(file.name.lastIndexOf('.') + 1).toLowerCase();\n    if (imageType.indexOf(suffix) === -1) {\n      $fn.toast(file.name + '的格式必须为png、jpg、jpeg！');\n      yes = false;\n      break;\n    }\n    // 限制图片上传大小\n    if (file.size > maxKB) {\n      $fn.toast(file.name + '文件尺寸超过最大限制' + maxMB + 'M');\n      yes = false;\n      break;\n    }\n  }\n  if (!yes) return;\n  const fd = FormDataUploader(opt.name, files, opt.param);\n  return fd;\n};\n\n//# sourceURL=webpack://jzer-react-template/./src/_pub/common/utils/upload.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The require scope
+/******/ 	var __webpack_require__ = {};
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/_pub/common/utils/upload.js"]();
-/******/ 	var __webpack_export_target__ = exports;
-/******/ 	var __webpack_exports_export__ = __webpack_exports__["default"];
-/******/ 	for(var i in __webpack_exports_export__) __webpack_export_target__[i] = __webpack_exports_export__[i];
-/******/ 	if(__webpack_exports_export__.__esModule) Object.defineProperty(__webpack_export_target__, "__esModule", { value: true });
+/******/ 	__webpack_modules__["./src/_pub/common/utils/upload.js"](0, __webpack_exports__, __webpack_require__);
+/******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;
