@@ -1,0 +1,1 @@
+import e from"react";import t from"../component/teleport-17.js";var r=function(r){var a=r.children,n=r.name;return e.createElement(t,{name:n||"ub-style",el:"head",tag:"style"},a)};export{r as default};

@@ -1,0 +1,1 @@
+var e=function(e){var t=document.querySelector("#copy");t||((t=document.createElement("textarea")).id="copy",t.style="position:absolute;left:0;bottom:-10000;z-index:-1",document.body.appendChild(t)),t.value=e,t.select(),document.execCommand("copy"),window.$fn.msg.success("复制成功")};export{e as default};

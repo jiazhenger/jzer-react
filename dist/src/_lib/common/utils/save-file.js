@@ -1,0 +1,1 @@
+var e=function(e,t){var n,w,o=window.URL||window.webkitURL||window,a=new Blob([t]),c=document.createElementNS("http://www.w3.org/1999/xhtml","a");c.href=o.createObjectURL(a),c.download=e,n=c,(w=document.createEvent("MouseEvents")).initMouseEvent("click",!0,!1,window,0,0,0,0,0,!1,!1,!1,!1,0,null),n.dispatchEvent(w)};export{e as default};

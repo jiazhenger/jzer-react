@@ -1,0 +1,1 @@
+import e from"react";var t=function(t){var r=t.value,a=t.color;return e.createElement(e.Fragment,null,window.$fn.isNotEmpty(r)?r:e.createElement("span",{className:"g9",style:{color:a}},"--"))};export{t as default};

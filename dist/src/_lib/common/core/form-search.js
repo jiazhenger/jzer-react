@@ -1,0 +1,1 @@
+var a={getSubmitParam:function(a,r){var t=this;return this.hasArray(a)&&a.forEach((function(a){var e=a.name,n=a.names;t.hasArray(n)&&2===n.length&&null!=r&&r[e]&&(r[n[0]]=r[e][0],r[n[1]]=r[e][1],delete r[e])})),r}};export{a as default};

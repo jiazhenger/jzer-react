@@ -1,0 +1,1 @@
+import a from"../../../../../common/utils/time.js";var t=window.$fn,e={getParam:function(e){var r={};return t.hasArray(e)&&e.forEach((function(e){t.isNotEmpty(e.value)?r[e.name]=e.value:t.isNotEmpty(e.defaultValue)&&"date-range"===e.type&&(r[e.name]=a.duration[e.defaultValue]())})),r}};export{e as default};

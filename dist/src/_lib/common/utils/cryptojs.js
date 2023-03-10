@@ -1,0 +1,1 @@
+import e from"crypto-js";var t={encode:function(t,d){return e.AES.encrypt(d,e.enc.Utf8.parse(t),{mode:e.mode.ECB,padding:e.pad.Pkcs7}).toString()},decode:function(t,d){return e.AES.decrypt(d,e.enc.Utf8.parse(t),{mode:e.mode.ECB,padding:e.pad.Pkcs7}).toString(e.enc.Utf8)}};export{t as default};

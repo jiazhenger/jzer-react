@@ -4,7 +4,7 @@ const cleanPlugin = new CleanWebpackPlugin()
 const resolve = dir => require('path').join(__dirname,dir)
 
 module.exports = {
-	mode: 'development',	// development为开发环境，production为生产环境
+	mode: 'production',	// development为开发环境，production为生产环境
 	entry:  {
 		'common/global': resolve('./src/_pub/common/global.js'),
 		
@@ -82,12 +82,13 @@ module.exports = {
 		path: resolve('./dist'),					// 打包后的文件存放的地方
 		// filename:'[name].js',					// 打包后输出文件的文件名
 		libraryTarget: 'commonjs2',
-		// libraryExport: 'default',
+		libraryExport: 'default',
 		clean: true
 	},
 	plugins: [ cleanPlugin ],
 	// devtool: 'source-map',					// 会生成对于调试的完整的.map文件，但同时也会减慢打包速度
 	resolve: {
+		extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
 		alias : {
 			'@' 		: resolve('src'),
 			'@css' 		: resolve('src/assets/css'),
@@ -115,8 +116,7 @@ module.exports = {
 			
 			'@views'	: resolve('src/views'),
 			'@pages' 	: resolve('src/pages')
-		},
-	    extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
+		}
 	},
 	module: {
 		rules: [

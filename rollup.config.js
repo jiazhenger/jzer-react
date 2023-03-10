@@ -24,34 +24,34 @@ const plugins = [
 		plugins: [
 			[
 				'@babel/plugin-transform-runtime',
-				{ useESModules: true /**, corejs: 3  */ },
+				// { useESModules: true /**, corejs: 3  */ },
 			],
 		]
 	}),
 	alias({
-		resolve: ['.jsx', '.js'],
+		resolve: ['.jsx', '.js', '...'],
 		entries: [
 			{ find: '@', 		replacement: resolve('src') }, // 将 @ 识别为 ./src 目录
 			{ find: '@css', 	replacement: resolve('src/assets/css') },
 			{ find: '@img', 	replacement: resolve('src/assets/images') },
 			{ find: '@js', 		replacement: resolve('src/assets/js') },
 						
-			{ find: '@com', 	replacement: resolve('src/_pub/common') },
-			{ find: '@utils', 	replacement: resolve('src/_pub/common/utils') },
+			{ find: '@com', 	replacement: resolve('src/_lib/common') },
+			{ find: '@utils', 	replacement: resolve('src/_lib/common/utils') },
 						
-			{ find: '@cpt', 	replacement: resolve('src/_pub/global/component') },
-			{ find: '@tp', 		replacement: resolve('src/_pub/global/template') },
-			{ find: '@plugin', 	replacement: resolve('src/_pub/global/plugin') },
+			{ find: '@cpt', 	replacement: resolve('src/_lib/global/component') },
+			{ find: '@tp', 		replacement: resolve('src/_lib/global/template') },
+			{ find: '@plugin', 	replacement: resolve('src/_lib/global/plugin') },
 						
-			{ find: '@el' , 	replacement: resolve('src/_pub/global/plugin/element') },
-			{ find: '@antd', 	replacement: resolve('src/_pub/global/plugin/antd') },
-			{ find: '@echart', 	replacement: resolve('src/_pub/global/plugin/echart') },
+			{ find: '@el' , 	replacement: resolve('src/_lib/global/plugin/element') },
+			{ find: '@antd', 	replacement: resolve('src/_lib/global/plugin/antd') },
+			{ find: '@echart', 	replacement: resolve('src/_lib/global/plugin/echart') },
 						
-			{ find: '#private', replacement: resolve('src/_pub/private') },
-			{ find: '#cpt', 	replacement: resolve('src/_pub/private/component') },
-			{ find: '#tp', 		replacement: resolve('src/_pub/private/template') },
-			{ find: '#plugin', 	replacement: resolve('src/_pub/private/plugin') },
-			{ find: '#frame', 	replacement: resolve('src/_pub/private/frame') },
+			{ find: '#private', replacement: resolve('src/_lib/private') },
+			{ find: '#cpt', 	replacement: resolve('src/_lib/private/component') },
+			{ find: '#tp', 		replacement: resolve('src/_lib/private/template') },
+			{ find: '#plugin', 	replacement: resolve('src/_lib/private/plugin') },
+			{ find: '#frame', 	replacement: resolve('src/_lib/private/frame') },
 						
 			{ find: '$project', replacement: resolve('src/project') },
 						
@@ -62,7 +62,67 @@ const plugins = [
 ]
 
 const input = ([
-	'src/_pub/common/global.js'
+	'src/_lib/common/global.js',
+	'src/_lib/common/login/clearCache.js',
+	'src/_lib/common/login/login.js',
+	'src/_lib/common/login/logout.js',
+	// utils
+	'src/_lib/common/utils/copy.js',
+	'src/_lib/common/utils/cryptojs.js',
+	'src/_lib/common/utils/download.js',
+	'src/_lib/common/utils/encrypt.js',
+	'src/_lib/common/utils/isColor.js',
+	'src/_lib/common/utils/moment.js',
+	'src/_lib/common/utils/platform.js',
+	'src/_lib/common/utils/proxy.js',
+	'src/_lib/common/utils/save-file.js',
+	'src/_lib/common/utils/time.js',
+	'src/_lib/common/utils/unique.js',
+	'src/_lib/common/utils/upload.js',
+	'src/_lib/common/utils/upload-show-excel.js',
+	// @cpt
+	'src/_lib/global/component/tree/index.jsx',
+	'src/_lib/global/component/suspense.jsx',
+	'src/_lib/global/component/teleport-18.jsx',
+	// @antd
+	'src/_lib/global/plugin/antd/form/layout/provider.jsx',
+	'src/_lib/global/plugin/antd/table/resizeable/index.jsx',
+	'src/_lib/global/plugin/antd/backTop.jsx',
+	'src/_lib/global/plugin/antd/image.jsx',
+	'src/_lib/global/plugin/antd/lang.jsx',
+	'src/_lib/global/plugin/antd/menu.jsx',
+	'src/_lib/global/plugin/antd/notification.js',
+	'src/_lib/global/plugin/antd/tabs.jsx',
+	'src/_lib/global/plugin/antd/timeline.jsx',
+	//
+	'src/_lib/global/template/content.jsx',
+	'src/_lib/global/template/data-loading.jsx',
+	'src/_lib/global/template/image.jsx',
+	'src/_lib/global/template/link.jsx',
+	'src/_lib/global/template/page-loading.jsx',
+	'src/_lib/global/template/scroll.jsx',
+	'src/_lib/global/template/space.jsx',
+	'src/_lib/global/template/style.jsx',
+	'src/_lib/global/template/text.jsx',
+	'src/_lib/global/template/toast.jsx',
+	// @private
+	'src/_lib/private/component/create-template/index.jsx',
+	'src/_lib/private/component/temp/Controls.jsx',
+	'src/_lib/private/component/temp/FormModal.jsx',
+	'src/_lib/private/component/temp/ImageModal.jsx',
+	'src/_lib/private/component/temp/SearchResizeTable.jsx',
+	'src/_lib/private/component/temp/SearchTable.jsx',
+	'src/_lib/private/component/temp/TableModal.jsx',
+	
+	'src/_lib/private/component/form-element/img-code.jsx',
+	'src/_lib/private/component/form-element/phone-code.jsx',
+	'src/_lib/private/component/form-element/select-content.jsx',
+	
+	'src/_lib/private/component/tabs/tabs-menu.jsx',
+	'src/_lib/private/component/check-code.jsx',
+	// 
+	'src/_lib/private/frame/radio-menu/frame-complex.jsx',
+	'src/_lib/private/frame/radio-menu/frame-easy.jsx',
 ]).map(v => resolve(v))
 
 module.exports =  [
@@ -76,19 +136,26 @@ module.exports =  [
 		plugins,
 		external: [
 			id => /\/__expample__|main.tsx/.test(id), // 组件的本地测试文件，不希望被打包。
-			'react',
-			'react-dom',
-			'react-router',
-			'react-is',
-			'classnames',
-			'antd',
 			'@ant-design',
 			'@babel',
 			'@ctrl',
-			'rc-util',
+			'react',
+			'react-dom',
+			'react-router',
+			'react-router-dom',
+			'react-cache-router',
+			'react-is',
+			'classnames',
+			'antd',
+			'moment',
 			'axios',
 			'echarts',
-			'project',
+			'xlsx', 'clsx', 
+			'virtuallist-antd', 'react-draggable', 'react-resizable',
+			'crypto-js',
+			'rc-pagination',
+			'rc-picker',
+			'rc-util',
 			'node_modules/**'
 		]
 	}

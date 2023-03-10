@@ -1,0 +1,1 @@
+var n=function(n){var o=n.api,e=n.history,r=n.msg,s=void 0===r?"确认退出登录？":r,t=n.onSuccess,i=window,c=i.$fn,u=i.$http;c.confirm({msg:s,onOk:function(){return new Promise((function(n,r){u.post(null,o,{loadingText:"退出登录中",onError:r}).then((function(o){n(),c.msg.success("退出登录成功"),c.localRemove("user"),e.replace("/login"),null==t||t(o)}))}))}})};export{n as default};
