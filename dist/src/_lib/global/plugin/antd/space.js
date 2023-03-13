@@ -1,0 +1,1 @@
+import e from"../../../_node/@babel/runtime/helpers/esm/extends.js";import r from"react";import{Space as t}from"antd";var n=window.$config,o=function(o){return r.createElement(t,e({size:n.btnSpace},o),o.children)};export{o as default};
